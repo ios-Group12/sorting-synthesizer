@@ -1,4 +1,4 @@
-# SortingSynth
+# Group 12: SortingSynth
 
 ## Table of Contents
 1. [Overview](#Overview)
