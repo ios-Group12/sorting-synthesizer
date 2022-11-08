@@ -121,10 +121,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
       - (Read/GET) Validate user credentials
         ```swift
          // Send a request to login
-        PFUser.logInWithUsernameInBackground(username, password: password, block: { (user, error) -> Void in
-            
-            // Stop the spinner
-            spinner.stopAnimating()
+        PFUser.logInWithUsernameInBackground(username, password: password, block: { (user, error) -> Void in           
             
             if ((user) != nil) {
                 var alert = UIAlertView(title: "Success", message: "Logged In", delegate: self, cancelButtonTitle: "OK")
