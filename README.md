@@ -100,23 +100,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 
 ### Networking
-#### List of network requests by screen
-   - Home Feed Screen
-      - (Read/GET) Query all posts where user is author
-         ```swift
-         let query = PFQuery(className:"Post")
-         query.whereKey("author", equalTo: currentUser)
-         query.order(byDescending: "createdAt")
-         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let error = error { 
-               print(error.localizedDescription)
-            } else if let posts = posts {
-               print("Successfully retrieved \(posts.count) posts.")
-           // TODO: Do something with posts...
-            }
-         }
-         ```
-      
+#### List of network requests by screen      
   - Login Screen
       - (Read/GET) Validate user credentials
         ```swift
