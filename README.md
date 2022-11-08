@@ -78,10 +78,125 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+#### Users Data Model Table 
+| Property | Type     | Description|
+| -------- | -------- | -------- |
+| objectId | String   | unique id for the user (default field)|
+| username  | String   | image author|
+| password | String   | image that user posts|
+| createdAt| Date     | date when user registered|
+
+
+#### Recordings Data Model Table 
+| Property | Type     | Description|
+| -------- | -------- | --------   |
+| objectId | String   | unique id for the recording (default field)|
+| file     | File     | wav file of synth recording|
+| createdAt| Date     | date when recording was created|
+| author   | Pointer to User| user who created recording|
+| title    | String   | name that user gave recording|
+
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+   - Home Feed Screen
+      - (Read/GET) Query all posts where user is author
+         ```swift
+         let query = PFQuery(className:"Post")
+         query.whereKey("author", equalTo: currentUser)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let posts = posts {
+               print("Successfully retrieved \(posts.count) posts.")
+           // TODO: Do something with posts...
+            }
+         }
+         ```
+      
+  - Login Screen
+      - (Read/GET) Validate user credentials
+        ```swift
+         // Send a request to login
+        PFUser.logInWithUsernameInBackground(username, password: password, block: { (user, error) -> Void in
+            
+            // Stop the spinner
+            spinner.stopAnimating()
+            
+            if ((user) != nil) {
+                var alert = UIAlertView(title: "Success", message: "Logged In", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home") as! UIViewController
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                })
+                
+            } else {
+                var alert = UIAlertView(title: "Error", message: "\(error)", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }
+        })
+        ```
+      - (Create/POST) Create new user 
+        ```swift
+        // Sign up the user asynchronously
+        newUser.signUpInBackgroundWithBlock({ (succeed, error) -> Void in
+            if ((error) != nil) {
+                var alert = UIAlertView(title: "Error", message: "\(error)", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                
+            } else {
+                var alert = UIAlertView(title: "Success", message: "Signed Up", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home") as! UIViewController
+                    self.presentViewController(viewController, animated: true, completion: nil)
+                })
+            }
+        })
+        ```
+  - Synth Screen
+      - (Create/POST) Create new recording
+        ```swift
+        let path = fileName
+        let filePath = NSURL(fileURLWith Path: path)
+        var dataToUpload : NSData = NSData(contentsOfURL: filePath!)!
+        let soundFile = PFFile(name: fileNAme, data: dataToUpload)
+        var userSound = PFObject(className:"upload")
+        userSound["user"] = currentUser
+        userSound["sound"] = soundFile
+        userSound.saveInBackground()
+        ```
+  - Recordings Screen
+      - (Read/GET) Query all recordings where current user is the author
+        ```swift
+        let currentRecording = recordings["recordingFile"] as PFFileObject
+        let recordingData = currentRecording.getData()
+        ```
+      - (Update/POST) Update/Rename recording
+        ```swift
+        let query = PFQuery(className:"Recordings")
+        query.getObjectInBackground(withId: objectID) { (recording: PFObject?, error: Error?) in 
+        if let error = error { print(error.localizedDescription)} 
+            else if let recording = recording {
+                recording["title"] = "New Title"
+                recording.saveInBackground()
+            }                                                                               
+        }
+        ```
+      - (Delete) Delete existing recording
+        ```swift
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/files/recordings\(currentuser.objectId).wav")!)
+        request.HTTPMethod = "DELETE"
+        request.setValue(appId, forHTTPHEaderField: "X-Parse-Application-Id")
+        request.setValue(clientKey, forHTTPHEaderField: "X-Parse-Master-Key")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request,completionHandler: {data, response, error -> Void in print("Response: \(response)")})
+        task!.resume()
+        ```
+#### [OPTIONAL:] Existing API Endpoints
+This app does not use any preexisting API endpoints
+
