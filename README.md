@@ -12,7 +12,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 ### App Evaluation
 - **Category:** Music / Education
-- **Mobile:** This app will be primarily developed for mobile but 
+- **Mobile:** This app will be primarily developed for mobile
 - **Story:** Takes a random array of integers and sorts them. For each sort, it generates a synthesized tone. For each synthsized tone, it is matched to a musical key signature, including 12-tone chromatic scale. The user can adjust different settings to change the sound.
 - **Market:** This turns the iPhone into a musical instrument. Any musician could use this to create sounds. 
 - **Habit:** This is intentionally designed to not be a social application. The user will be able to share their recordings/generated sounds. 
