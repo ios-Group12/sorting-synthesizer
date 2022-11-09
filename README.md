@@ -178,6 +178,4 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request,completionHandler: {data, response, error -> Void in print("Response: \(response)")})
         task!.resume()
         ```
-#### [OPTIONAL:] Existing API Endpoints
-This app does not use any preexisting API endpoints
 
