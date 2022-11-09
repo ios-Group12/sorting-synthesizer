@@ -74,10 +74,6 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 ![](wireframe.png)
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
 ### Models
 
