@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		21962F8F291DD975006094FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962F8E291DD975006094FC /* AppDelegate.swift */; };
 		21962F91291DD975006094FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962F90291DD975006094FC /* SceneDelegate.swift */; };
-		21962F93291DD975006094FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962F92291DD975006094FC /* ViewController.swift */; };
 		21962F96291DD975006094FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21962F94291DD975006094FC /* Main.storyboard */; };
 		21962F98291DD979006094FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21962F97291DD979006094FC /* Assets.xcassets */; };
 		21962F9B291DD979006094FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21962F99291DD979006094FC /* LaunchScreen.storyboard */; };
 		21962FA6291DD979006094FC /* SortingSynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962FA5291DD979006094FC /* SortingSynthTests.swift */; };
 		21962FB0291DD979006094FC /* SortingSynthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962FAF291DD979006094FC /* SortingSynthUITests.swift */; };
 		21962FB2291DD979006094FC /* SortingSynthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962FB1291DD979006094FC /* SortingSynthUITestsLaunchTests.swift */; };
+		39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610C8C291EC82100A0915A /* LoginViewController.swift */; };
+		39610C8F291EC83F00A0915A /* SynthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610C8E291EC83F00A0915A /* SynthViewController.swift */; };
 		6ED15BCDA4072633C3C0915A /* Pods_SortingSynth_SortingSynthUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44AF71C2CCDC63D58FAC7E5E /* Pods_SortingSynth_SortingSynthUITests.framework */; };
 		9F6246F66CB6CE3964DE7CB2 /* Pods_SortingSynth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75549E831EB14D40C153F3B1 /* Pods_SortingSynth.framework */; };
 		A97F912CBA3504F6DB7E8842 /* Pods_SortingSynthTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82588F787260B969928272F9 /* Pods_SortingSynthTests.framework */; };
@@ -44,7 +45,6 @@
 		21962F8B291DD974006094FC /* SortingSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SortingSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21962F8E291DD975006094FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21962F90291DD975006094FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		21962F92291DD975006094FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		21962F95291DD975006094FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		21962F97291DD979006094FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21962F9A291DD979006094FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +54,8 @@
 		21962FAB291DD979006094FC /* SortingSynthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SortingSynthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21962FAF291DD979006094FC /* SortingSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITests.swift; sourceTree = "<group>"; };
 		21962FB1291DD979006094FC /* SortingSynthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39610C8C291EC82100A0915A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		39610C8E291EC83F00A0915A /* SynthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynthViewController.swift; sourceTree = "<group>"; };
 		3ECF2CAF39C8C220F027F70F /* Pods-SortingSynth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingSynth.debug.xcconfig"; path = "Target Support Files/Pods-SortingSynth/Pods-SortingSynth.debug.xcconfig"; sourceTree = "<group>"; };
 		44AF71C2CCDC63D58FAC7E5E /* Pods_SortingSynth_SortingSynthUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SortingSynth_SortingSynthUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A05F0D87B8BEDB44052138 /* Pods-SortingSynthTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingSynthTests.debug.xcconfig"; path = "Target Support Files/Pods-SortingSynthTests/Pods-SortingSynthTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +120,8 @@
 			children = (
 				21962F8E291DD975006094FC /* AppDelegate.swift */,
 				21962F90291DD975006094FC /* SceneDelegate.swift */,
-				21962F92291DD975006094FC /* ViewController.swift */,
+				39610C8C291EC82100A0915A /* LoginViewController.swift */,
+				39610C8E291EC83F00A0915A /* SynthViewController.swift */,
 				21962F94291DD975006094FC /* Main.storyboard */,
 				21962F97291DD979006094FC /* Assets.xcassets */,
 				21962F99291DD979006094FC /* LaunchScreen.storyboard */,
@@ -164,7 +167,6 @@
 				57A05F0D87B8BEDB44052138 /* Pods-SortingSynthTests.debug.xcconfig */,
 				C552E4318AA491CAD3292E90 /* Pods-SortingSynthTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -407,7 +409,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21962F93291DD975006094FC /* ViewController.swift in Sources */,
+				39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */,
+				39610C8F291EC83F00A0915A /* SynthViewController.swift in Sources */,
 				21962F8F291DD975006094FC /* AppDelegate.swift in Sources */,
 				21962F91291DD975006094FC /* SceneDelegate.swift in Sources */,
 			);
@@ -593,8 +596,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -622,8 +624,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
