@@ -26,12 +26,12 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 1) [x] User can register
 2) [x] User can log in
-3) [] User can change volume
-4) [] User can change oscillator
-5) [] User can +/- octaves
-6) [] User can select musical keys
-7) [] User can change sorting algorithm
-8) [] User can start/stop the synthesizer
+3) [ ] User can change volume
+4) [ ] User can change oscillator
+5) [ ] User can +/- octaves
+6) [ ] User can select musical keys
+7) [ ] User can change sorting algorithm
+8) [ ] User can start/stop the synthesizer
 
 
 **Optional Nice-to-have Stories**
