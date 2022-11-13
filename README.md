@@ -24,8 +24,8 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 **Required Must-have Stories**
 
-1) User can register
-2) User can log in
+1) [x] User can register
+2) [x] User can log in
 3) User can change volume
 4) User can change oscillator
 5) User can +/- octaves
