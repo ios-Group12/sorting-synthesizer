@@ -94,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRY-8V-tdl">
-                                <rect key="frame" x="-2" y="348" width="853" height="44"/>
+                                <rect key="frame" x="-4" y="348" width="854" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Settings" image="slider.vertical.3" catalog="system" id="0rV-r6-TB1">
@@ -102,8 +102,18 @@
                                             <segue destination="M5w-Z8-M4P" kind="presentation" id="gWr-2C-rAe"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="AvJ-oT-l1h"/>
+                                    <barButtonItem title="recordButton" image="record.circle" catalog="system" id="XBN-Ef-T8q" userLabel="recordButton" propertyAccessControl="none">
+                                        <connections>
+                                            <action selector="recordButton:" destination="Uxn-lW-aYz" id="nmC-Gb-lbV"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9T5-xg-4Hz">
+                                <rect key="frame" x="0.0" y="0.0" width="852" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tsf-vk-eiC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -113,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiE-GL-mA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="-54"/>
+            <point key="canvasLocation" x="1042" y="-54"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xgD-WA-ScG">
@@ -259,12 +269,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="c2K-P3-5va"/>
+        <segue reference="gE5-Wk-TKd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line" width="95" height="2"/>
         <image name="logodraft" width="3004" height="1660"/>
         <image name="pianokeys" catalog="system" width="128" height="93"/>
+        <image name="record.circle" catalog="system" width="128" height="123"/>
         <image name="settingsbackground" width="191" height="69"/>
         <image name="slider.vertical.3" catalog="system" width="128" height="110"/>
         <image name="woodtexture" width="667" height="330"/>
