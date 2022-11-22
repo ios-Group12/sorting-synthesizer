@@ -40,10 +40,11 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 **Optional Nice-to-have Stories**
 
-1) User can record
-2) User can add effects
-3) User can "share" a recording
-4) User can direct download the recording
+1) [ ] User can record
+ ![](https://recordit.co/Q7mQo7P2JU) 
+2) [ ] User can add effects
+3) [ ] User can "share" a recording
+4) [ ] User can direct download the recording
 
 ### 2. Screen Archetypes
 
