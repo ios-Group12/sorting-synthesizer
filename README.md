@@ -41,7 +41,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 **Optional Nice-to-have Stories**
 
 1) [ ] User can record
- ![](https://recordit.co/Q7mQo7P2JU) 
+ ![](http://g.recordit.co/Q7mQo7P2JU.gif) 
 2) [ ] User can add effects
 3) [ ] User can "share" a recording
 4) [ ] User can direct download the recording
