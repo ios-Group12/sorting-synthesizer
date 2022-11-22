@@ -27,6 +27,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 1) [x] User can register
 2) [x] User can log in
 3) [x] User can change volume
+
 ![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/97559945/203369013-99923b08-223d-430f-9ed8-a91f095697fa.gif)
 4) [x] User can change oscillator
 ![](oscillator.gif)
