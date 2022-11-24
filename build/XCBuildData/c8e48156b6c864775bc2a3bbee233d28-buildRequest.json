@@ -1,0 +1,52 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e984bfcdb7cac3059f064f5e03ac63ae45e"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e982e0a04bc7d36a093a39d967b2e73d1f9"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e980df5ca1575727157eff0dfbdad86e7eb"
+    }
+  ],
+  "containerPath" : "/Users/lisamylett/Documents/Xcode_Projects/sorting-synthesizer/Pods/Pods.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/lisamylett/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/lisamylett/Library/Developer/Xcode/DerivedData/Pods-cclbcwgbvanoptfnaztisawazlsl/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/lisamylett/Library/Developer/Xcode/DerivedData/Pods-cclbcwgbvanoptfnaztisawazlsl/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : false
+}

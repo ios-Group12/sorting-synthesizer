@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +13,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjg-1i-W14">
@@ -88,39 +87,63 @@
         <!--Synth View Controller-->
         <scene sceneID="dY6-9u-l4t">
             <objects>
-                <viewController id="Uxn-lW-aYz" customClass="SynthViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SynthViewController" storyboardIdentifier="SynthViewController" id="Uxn-lW-aYz" customClass="SynthViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dOB-y1-afl">
-                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="woodtexture" translatesAutoresizingMaskIntoConstraints="NO" id="iml-mP-4Vi">
+                                <rect key="frame" x="-2" y="302" width="897" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="STOP" translatesAutoresizingMaskIntoConstraints="NO" id="5hf-br-cZA">
+                                <rect key="frame" x="813" y="314" width="39" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRY-8V-tdl">
-                                <rect key="frame" x="-2" y="348" width="853" height="44"/>
+                                <rect key="frame" x="-2" y="369" width="897" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Settings" image="slider.vertical.3" catalog="system" id="0rV-r6-TB1">
                                         <connections>
-                                            <segue destination="M5w-Z8-M4P" kind="presentation" id="gWr-2C-rAe"/>
+                                            <action selector="onSettingsClick:" destination="Uxn-lW-aYz" id="o40-g8-Ih0"/>
+                                            <segue destination="M5w-Z8-M4P" kind="popoverPresentation" identifier="synthToSettingsSegue" popoverAnchorBarButtonItem="0rV-r6-TB1" id="gWr-2C-rAe">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="RECORD" translatesAutoresizingMaskIntoConstraints="NO" id="WXJ-KT-WaS">
+                                <rect key="frame" x="656" y="315" width="43" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PLAY" translatesAutoresizingMaskIntoConstraints="NO" id="R6k-9l-SzB">
+                                <rect key="frame" x="735" y="314" width="38" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tsf-vk-eiC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="ccD-s3-d5m"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="playButton" destination="R6k-9l-SzB" id="DkW-m4-Gti"/>
+                        <outlet property="recordButton" destination="WXJ-KT-WaS" id="PvQ-g6-Pg7"/>
+                        <outlet property="stopButton" destination="5hf-br-cZA" id="r7d-lp-4a6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiE-GL-mA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="-54"/>
+            <point key="canvasLocation" x="1032.5892857142858" y="-55.072463768115945"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xgD-WA-ScG">
             <objects>
-                <viewController id="M5w-Z8-M4P" customClass="SettingsViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SettingsView" storyboardIdentifier="SettingsView" id="M5w-Z8-M4P" customClass="SettingsViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3FD-Uf-jow">
-                        <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="woodtexture" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-Z4-TAL">
@@ -133,13 +156,13 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wa-pu-3j4">
-                                <rect key="frame" x="-1" y="0.0" width="852" height="44"/>
+                                <rect key="frame" x="-1" y="0.0" width="896" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Settings" id="yve-e1-NvU">
                                         <barButtonItem key="leftBarButtonItem" title="Synth" image="pianokeys" catalog="system" id="63Z-0g-m3A">
                                             <connections>
-                                                <segue destination="Uxn-lW-aYz" kind="presentation" id="c2K-P3-5va"/>
+                                                <action selector="onBarButtonClick:" destination="M5w-Z8-M4P" id="Dm4-wA-jFU"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -228,16 +251,49 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rotaryKnob" translatesAutoresizingMaskIntoConstraints="NO" id="eXM-ra-c6z">
+                                <rect key="frame" x="127" y="161" width="54" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXg-kF-DuA">
+                                <rect key="frame" x="127" y="161" width="54" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="onTestPress:" destination="M5w-Z8-M4P" eventType="touchUpInside" id="7gC-8E-H4T"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sine" translatesAutoresizingMaskIntoConstraints="NO" id="Cmj-jM-Ejw">
+                                <rect key="frame" x="134" y="129" width="41" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="tBy-Dw-Wsp">
+                                <rect key="frame" x="185" y="168" width="41" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sawtooth" translatesAutoresizingMaskIntoConstraints="NO" id="m1S-co-kDF">
+                                <rect key="frame" x="134" y="217" width="41" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square" translatesAutoresizingMaskIntoConstraints="NO" id="uuR-5m-tqx">
+                                <rect key="frame" x="82" y="168" width="41" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Qc-9z-ZYO"/>
                     </view>
                     <connections>
+                        <outlet property="synthSelectorSwitch" destination="eXM-ra-c6z" id="af9-jm-6AC"/>
                         <outlet property="volumeSliderView" destination="Hhi-Ib-5Y3" id="bvp-7B-zMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1p-dI-WBs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031.6901408450706" y="890.83969465648852"/>
+            <point key="canvasLocation" x="1032.5892857142858" y="934.78260869565224"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zux-n2-Art">
@@ -245,7 +301,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7SK-gw-EN7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hk2-Oi-fEf">
-                        <rect key="frame" x="0.0" y="59" width="852" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -258,15 +314,20 @@
             <point key="canvasLocation" x="295" y="-54"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="c2K-P3-5va"/>
-    </inferredMetricsTieBreakers>
     <resources>
+        <image name="Image" width="352" height="371"/>
+        <image name="PLAY" width="160" height="161"/>
+        <image name="RECORD" width="165" height="163"/>
+        <image name="STOP" width="163" height="165"/>
         <image name="line" width="95" height="2"/>
         <image name="logodraft" width="3004" height="1660"/>
         <image name="pianokeys" catalog="system" width="128" height="93"/>
+        <image name="rotaryKnob" width="128" height="129"/>
+        <image name="sawtooth" width="438" height="225"/>
         <image name="settingsbackground" width="191" height="69"/>
-        <image name="slider.vertical.3" catalog="system" width="128" height="110"/>
+        <image name="sine" width="489" height="366"/>
+        <image name="slider.vertical.3" catalog="system" width="128" height="111"/>
+        <image name="square" width="440" height="209"/>
         <image name="woodtexture" width="667" height="330"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
