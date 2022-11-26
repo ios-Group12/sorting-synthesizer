@@ -75,9 +75,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         isPlaying = false
     }
     
-    func recordAudio(){
-        //
-    }
 }
 
 

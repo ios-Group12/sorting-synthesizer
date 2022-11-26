@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		212843D8292806E90076B41F /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212843D7292806E90076B41F /* Oscillator.swift */; };
 		212843DB2928075F0076B41F /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 212843DA2928075F0076B41F /* SoundpipeAudioKit */; };
-		212CD1A5292DE468004BEE6F /* wilhelmscream.wav in Resources */ = {isa = PBXBuildFile; fileRef = 212CD1A4292DE468004BEE6F /* wilhelmscream.wav */; };
 		21962F8F291DD975006094FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962F8E291DD975006094FC /* AppDelegate.swift */; };
 		21962F91291DD975006094FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962F90291DD975006094FC /* SceneDelegate.swift */; };
 		21962F96291DD975006094FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21962F94291DD975006094FC /* Main.storyboard */; };
@@ -18,6 +17,7 @@
 		21962FB0291DD979006094FC /* SortingSynthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962FAF291DD979006094FC /* SortingSynthUITests.swift */; };
 		21962FB2291DD979006094FC /* SortingSynthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21962FB1291DD979006094FC /* SortingSynthUITestsLaunchTests.swift */; };
 		21C587612928147200F13FA4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 21C587602928147200F13FA4 /* AudioKit */; };
+		220FF6A22932B85E00126250 /* NRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220FF6A12932B85E00126250 /* NRecorder.swift */; };
 		31CA2A1C6CB345362E3510EF /* Pods_SortingSynth_SortingSynthUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194D68A84F790A2325FB62B9 /* Pods_SortingSynth_SortingSynthUITests.framework */; };
 		390CD29529259B07002BBBC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390CD29429259B07002BBBC4 /* Assets.xcassets */; };
 		39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610C8C291EC82100A0915A /* LoginViewController.swift */; };
@@ -47,8 +47,7 @@
 /* Begin PBXFileReference section */
 		12E0AEAA13279E77381B2A1D /* Pods-SortingSynth-SortingSynthUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SortingSynth-SortingSynthUITests.release.xcconfig"; path = "Target Support Files/Pods-SortingSynth-SortingSynthUITests/Pods-SortingSynth-SortingSynthUITests.release.xcconfig"; sourceTree = "<group>"; };
 		194D68A84F790A2325FB62B9 /* Pods_SortingSynth_SortingSynthUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SortingSynth_SortingSynthUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		212843D7292806E90076B41F /* Oscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Oscillator.swift; path = ../../../../Desktop/Oscillator.swift; sourceTree = "<group>"; };
-		212CD1A4292DE468004BEE6F /* wilhelmscream.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wilhelmscream.wav; path = ../../../../Downloads/wilhelmscream.wav; sourceTree = "<group>"; };
+		212843D7292806E90076B41F /* Oscillator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
 		21962F8B291DD974006094FC /* SortingSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SortingSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21962F8E291DD975006094FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21962F90291DD975006094FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		21962FAB291DD979006094FC /* SortingSynthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SortingSynthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21962FAF291DD979006094FC /* SortingSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITests.swift; sourceTree = "<group>"; };
 		21962FB1291DD979006094FC /* SortingSynthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		220FF6A12932B85E00126250 /* NRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRecorder.swift; sourceTree = "<group>"; };
 		390CD29429259B07002BBBC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		39610C8C291EC82100A0915A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		39610C8E291EC83F00A0915A /* SynthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynthViewController.swift; sourceTree = "<group>"; };
@@ -129,12 +129,12 @@
 		21962F8D291DD974006094FC /* SortingSynth */ = {
 			isa = PBXGroup;
 			children = (
-				212CD1A4292DE468004BEE6F /* wilhelmscream.wav */,
 				21962F8E291DD975006094FC /* AppDelegate.swift */,
 				21962F90291DD975006094FC /* SceneDelegate.swift */,
 				39610C8C291EC82100A0915A /* LoginViewController.swift */,
 				39610C8E291EC83F00A0915A /* SynthViewController.swift */,
 				212843D7292806E90076B41F /* Oscillator.swift */,
+				220FF6A12932B85E00126250 /* NRecorder.swift */,
 				39B59953292547F400EA326B /* SettingsViewController.swift */,
 				21962F94291DD975006094FC /* Main.storyboard */,
 				21962F99291DD979006094FC /* LaunchScreen.storyboard */,
@@ -304,7 +304,6 @@
 			files = (
 				21962F9B291DD979006094FC /* LaunchScreen.storyboard in Resources */,
 				390CD29529259B07002BBBC4 /* Assets.xcassets in Resources */,
-				212CD1A5292DE468004BEE6F /* wilhelmscream.wav in Resources */,
 				21962F96291DD975006094FC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +435,7 @@
 				39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */,
 				39610C8F291EC83F00A0915A /* SynthViewController.swift in Sources */,
 				21962F8F291DD975006094FC /* AppDelegate.swift in Sources */,
+				220FF6A22932B85E00126250 /* NRecorder.swift in Sources */,
 				212843D8292806E90076B41F /* Oscillator.swift in Sources */,
 				39B59954292547F400EA326B /* SettingsViewController.swift in Sources */,
 				21962F91291DD975006094FC /* SceneDelegate.swift in Sources */,
@@ -616,7 +616,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7V37GZJPC;
+				DEVELOPMENT_TEAM = 3Z6QGJ7X8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SortingSynth/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -628,7 +628,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SortingSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = SortingSynthz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -644,7 +644,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7V37GZJPC;
+				DEVELOPMENT_TEAM = 3Z6QGJ7X8R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SortingSynth/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -656,7 +656,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SortingSynth;
+				PRODUCT_BUNDLE_IDENTIFIER = SortingSynthz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -8,15 +8,21 @@
 import UIKit
 import AudioKit
 import SoundpipeAudioKit
+import ReplayKit
 import Parse
 
 
 class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
     var uview:UIView = UIView()
     var sound:OscillatorConductor = OscillatorConductor()
+    var recorder: NodeRecorder?
+
     
     var fileName = "wilhelmscream.wav" //test audio file
+    private var isActive = false
+
     
+    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var recordButton: UIImageView!
     @IBOutlet weak var stopButton: UIImageView!
     @IBOutlet weak var playButton: UIImageView!
@@ -26,6 +32,7 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
         self.stopButton.isUserInteractionEnabled = true
         self.playButton.isUserInteractionEnabled = true
         self.recordButton.isUserInteractionEnabled = true
+        recorder = try! NodeRecorder(node: sound.engine.output!)
         // Do any additional setup after loading the view.
     }
     // Delegate Method
@@ -66,10 +73,20 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 
                 //record button pressed
                 if touch.view == self.recordButton{
-                    //insert recording logic here
-                    print("record pressed")
-                    saveRecording()
                     
+                    
+                    //insert recording logic here
+                    if recorder?.isRecording == false {
+                        // If a recording isn't active, the button starts the capture session.
+                        try! recorder?.record()
+                        print("Recording started")
+                    } else {
+                        // If a recording is active, the button stops the capture session.
+                        recorder?.stop()
+                        print("Recording stopped")
+                        saveRecording()
+                    }
+                                        
                 }
             }
         }
@@ -79,10 +96,12 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
 
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             self.uploadToParse()
+            try! self.recorder?.reset()
         }))
 
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            //do nothing, user cancelled.
+            //reset recorder
+            try! self.recorder?.reset()
         }))
 
         present(refreshAlert, animated: true, completion: nil)
@@ -94,10 +113,10 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 recording["name"] = "recording"
                 recording["author"] = PFUser.current()
                 
-                let path = getFileURL()
+                guard let path = recorder?.audioFile?.url else { return;}
                 let data = NSData(contentsOf: path as URL)
                   
-                let soundFile = PFFileObject(name: "recording.wav", data: data as! Data)
+        let soundFile = PFFileObject(name: "recording.caf", data: data! as Data)
                 recording["sound"] = soundFile
                 recording.saveInBackground()
     }
@@ -116,7 +135,6 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
            
            return fileURL as NSURL
        }
-
     /*
     // MARK: - Navigation
 
