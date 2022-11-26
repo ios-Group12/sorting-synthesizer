@@ -8,15 +8,20 @@
 import UIKit
 import AudioKit
 import SoundpipeAudioKit
+import ReplayKit
 import Parse
 
 
 class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
     var uview:UIView = UIView()
     var sound:OscillatorConductor = OscillatorConductor()
+    var recorder: Recorder?
     
     var fileName = "wilhelmscream.wav" //test audio file
+    private var isActive = false
+
     
+    @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var recordButton: UIImageView!
     @IBOutlet weak var stopButton: UIImageView!
     @IBOutlet weak var playButton: UIImageView!
@@ -66,10 +71,21 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 
                 //record button pressed
                 if touch.view == self.recordButton{
-                    //insert recording logic here
-                    print("record pressed")
-                    saveRecording()
                     
+                    recorder = try! Recorder(node: sound.engine.mainMixerNode!)
+                    
+                    //insert recording logic here
+                    if recorder?.isRecording == false {
+                        // If a recording isn't active, the button starts the capture session.
+                        try! recorder?.record()
+                        print("record started")
+                    } else {
+                        // If a recording is active, the button stops the capture session.
+                        recorder?.stop()
+                        print("record stopped")
+                        //saveRecording()
+                    }
+                                        
                 }
             }
         }
@@ -116,7 +132,6 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
            
            return fileURL as NSURL
        }
-
     /*
     // MARK: - Navigation
 
