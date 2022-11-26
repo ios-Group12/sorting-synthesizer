@@ -4,7 +4,7 @@ import AVFoundation
 import AudioKit
 
 /// Simple audio recorder class, requires a minimum buffer length of 128 samples (.short)
-open class Recorder: NSObject {
+open class NRecorder: NSObject {
     // MARK: - Properties
 
     /// The node we record from
@@ -16,7 +16,7 @@ open class Recorder: NSObject {
     /// True if we are paused
     public private(set) var isPaused = false
 
-    /// An optional duration for the recording to autod-stop when reached
+    /// An optional duration for the recording to auto-stop when reached
     open var durationToRecord: Double = 0
 
     /// Duration of recording
@@ -136,7 +136,7 @@ open class Recorder: NSObject {
 
     /// Returns a CAF file in specified directory suitable for writing to via Settings.audioFormat
     public static func createAudioFile(fileDirectoryURL: URL = URL(fileURLWithPath: NSTemporaryDirectory())) -> AVAudioFile? {
-        let filename = createDateFileName() + ".caf"
+        let filename = createDateFileName() + ".wav"
         let url = fileDirectoryURL.appendingPathComponent(filename)
         var settings = Settings.audioFormat.settings
         settings[AVLinearPCMIsNonInterleaved] = NSNumber(value: false)
@@ -151,11 +151,11 @@ open class Recorder: NSObject {
 
     /// When done with this class, remove any audio files that were created with createAudioFile()
     public static func removeRecordedFiles() {
-        for url in Recorder.recordedFiles {
+        for url in NRecorder.recordedFiles {
             try? FileManager.default.removeItem(at: url)
             Log("𝗫 Deleted tmp file at", url)
         }
-        Recorder.recordedFiles.removeAll()
+        NRecorder.recordedFiles.removeAll()
     }
 
     /// Start recording
@@ -258,6 +258,7 @@ open class Recorder: NSObject {
         if isPaused {
             isPaused = false
         }
+        
     }
 
     /// Pause recording
