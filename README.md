@@ -36,7 +36,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 5) [ ] User can +/- octaves
 6) [ ] User can select musical keys
-7) [ ] User can change sorting algorithm
+7) [x] User can change sorting algorithm
 8) [x] User can start/stop the synthesizer
 
 
@@ -44,7 +44,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 1) [x] User can save a recording
  ![](http://g.recordit.co/Q7mQo7P2JU.gif) 
-2) [ ] User can add effects
+2) [x] User can add effects
 3) [ ] User can "share" a recording
 4) [ ] User can direct download the recording
 
