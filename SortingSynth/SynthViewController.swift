@@ -80,10 +80,12 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                         // If a recording isn't active, the button starts the capture session.
                         try! recorder?.record()
                         print("Recording started")
+                        self.recordButton.image = UIImage(named: "RECORDING")
                     } else {
                         // If a recording is active, the button stops the capture session.
                         recorder?.stop()
                         print("Recording stopped")
+                        self.recordButton.image = UIImage(named: "RECORD")
                         saveRecording()
                     }
                     
