@@ -305,6 +305,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tuc-Mo-P8J">
+                                <rect key="frame" x="266" y="286" width="48" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bubblesort" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-yR-7ZY">
                                 <rect key="frame" x="139" y="345" width="31" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -322,10 +329,45 @@
                                 <rect key="frame" x="87" y="294" width="38" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="toggleOff" translatesAutoresizingMaskIntoConstraints="NO" id="VPN-rR-v53">
+                                <rect key="frame" x="267" y="307" width="46" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="toggleOff" translatesAutoresizingMaskIntoConstraints="NO" id="RS8-nq-Geo">
+                                <rect key="frame" x="356" y="307" width="46" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzz-as-cZM">
+                                <rect key="frame" x="270" y="309" width="39" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="onDelayPress:" destination="M5w-Z8-M4P" eventType="touchUpInside" id="0PC-pj-rqX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaQ-WL-xi7">
+                                <rect key="frame" x="356" y="307" width="46" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="onReverbPress:" destination="M5w-Z8-M4P" eventType="touchUpInside" id="bDV-1x-sYS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reverb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95u-au-FVS">
+                                <rect key="frame" x="350" y="286" width="59" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Qc-9z-ZYO"/>
                     </view>
                     <connections>
+                        <outlet property="delaySelectorSwitch" destination="VPN-rR-v53" id="jsJ-DA-7sP"/>
+                        <outlet property="reverbSelectorSwitch" destination="RS8-nq-Geo" id="kLx-Zi-3Ns"/>
                         <outlet property="sortSelectorSwitch" destination="GND-SV-mge" id="DbM-s4-aib"/>
                         <outlet property="synthSelectorSwitch" destination="eXM-ra-c6z" id="af9-jm-6AC"/>
                         <outlet property="volumeSliderView" destination="Hhi-Ib-5Y3" id="bvp-7B-zMw"/>
@@ -372,6 +414,7 @@
         <image name="sine" width="489" height="366"/>
         <image name="slider.vertical.3" catalog="system" width="128" height="111"/>
         <image name="square" width="440" height="209"/>
+        <image name="toggleOff" width="199" height="328"/>
         <image name="woodtexture" width="667" height="330"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -31,7 +31,7 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
         self.stopButton.isUserInteractionEnabled = true
         self.playButton.isUserInteractionEnabled = true
         self.recordButton.isUserInteractionEnabled = true
-        recorder = try! NodeRecorder(node: sound.engine.output!)
+        recorder = try! NodeRecorder(node: DynamicOscillator())
     }
     // Delegate Method
       func sendDataToFirstViewController(myData: Int) {
@@ -58,11 +58,15 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
             if let touch = touches.first {
                 //play button pressed
                 if touch.view == self.playButton {//image View property
-                    print(sound.waveTableIndex)
-                    sound.noteOn()
-                    let array = Array(0...15)
+                    self.playButton.image = UIImage(named: "PLAYING")
+                    let array = Array(70...90)
                     let shuffledArray = array.shuffled() //shuffles array into random order
-                    playSort(arrayToSort: shuffledArray) //send array to be sorted
+                    
+                    //background thread will run oscillator
+                    let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
+                    dispatchQueue.async{
+                        self.playSort(arrayToSort: shuffledArray) //send array to be sorted
+                    }
                     //sound.osc.frequency = 440.0
                    // print(sound.osc.frequency)
                 }
@@ -70,6 +74,7 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 //stop button pressed
                 if touch.view == self.stopButton{
                     sound.noteOff()
+                    self.playButton.image = UIImage(named: "PLAY")
                 }
                 
                 //record button pressed
@@ -78,6 +83,7 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                     //insert recording logic here
                     if recorder?.isRecording == false {
                         // If a recording isn't active, the button starts the capture session.
+                        recorder? = try! NodeRecorder(node: sound.engine.output!)
                         try! recorder?.record()
                         print("Recording started")
                         self.recordButton.image = UIImage(named: "RECORDING")
@@ -93,7 +99,13 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
             }
         }
     
+    func updatePlayButton(){
+        self.playButton.image = UIImage(named: "PLAYING")
+        self.view.addSubview(playButton)
+    }
+    
     func playSort(arrayToSort: [Int]){
+        sound.noteOn()
         switch sound.sortIndex{
         case 0:
             sound.insertionSort(arrayToSort)
