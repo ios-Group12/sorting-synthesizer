@@ -9,13 +9,16 @@ import UIKit
 import AudioKit
 import SoundpipeAudioKit
 import Parse
+import ReplayKit
 
 
 class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
     var uview:UIView = UIView()
     var sound:OscillatorConductor = OscillatorConductor()
-    
+    var recorder: NodeRecorder?
     var fileName = "wilhelmscream.wav" //test audio file
+    
+    private var isActive = false
     
     @IBOutlet weak var recordButton: UIImageView!
     @IBOutlet weak var stopButton: UIImageView!
@@ -23,10 +26,12 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        //enable transport controls as buttons
         self.stopButton.isUserInteractionEnabled = true
         self.playButton.isUserInteractionEnabled = true
         self.recordButton.isUserInteractionEnabled = true
-        // Do any additional setup after loading the view.
+        recorder = try! NodeRecorder(node: sound.engine.output!)
     }
     // Delegate Method
       func sendDataToFirstViewController(myData: Int) {
@@ -38,7 +43,7 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
         self.performSegue(withIdentifier: "synthToSettingsSegue", sender: self)
     }
     
-    //prepare for segue, assign objects to pass through model
+    //prepare for segue, assign objects to pass through modal segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "synthToSettingsSegue" {
                 let secondVC: SettingsViewController = segue.destination as! SettingsViewController
@@ -55,6 +60,9 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 if touch.view == self.playButton {//image View property
                     print(sound.waveTableIndex)
                     sound.noteOn()
+                    let array = Array(0...15)
+                    let shuffledArray = array.shuffled() //shuffles array into random order
+                    playSort(arrayToSort: shuffledArray) //send array to be sorted
                     //sound.osc.frequency = 440.0
                    // print(sound.osc.frequency)
                 }
@@ -66,56 +74,84 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 
                 //record button pressed
                 if touch.view == self.recordButton{
-                    //insert recording logic here
                     print("record pressed")
-                    saveRecording()
+                    //insert recording logic here
+                    if recorder?.isRecording == false {
+                        // If a recording isn't active, the button starts the capture session.
+                        try! recorder?.record()
+                        print("Recording started")
+                    } else {
+                        // If a recording is active, the button stops the capture session.
+                        recorder?.stop()
+                        print("Recording stopped")
+                        saveRecording()
+                    }
                     
                 }
             }
         }
     
+    func playSort(arrayToSort: [Int]){
+        switch sound.sortIndex{
+        case 0:
+            sound.insertionSort(arrayToSort)
+        case 1:
+            //mergeSort has recursive paths, requires return values
+            //return to anonymous variable
+            _=sound.mergeSort(arrayToSort)
+        case 2:
+            sound.bubbleSort(arrayToSort)
+        case 3:
+            sound.selectionSort(arrayToSort)
+        default:
+            sound.insertionSort(arrayToSort)
+        }
+    }
+    
     func saveRecording(){
         let refreshAlert = UIAlertController(title: "Save Recording", message: "Save this recording?", preferredStyle: UIAlertController.Style.alert)
 
-        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-            self.uploadToParse()
-        }))
+                refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+                    self.uploadToParse()
+                    try! self.recorder?.reset()
+                }))
 
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            //do nothing, user cancelled.
-        }))
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    //reset recorder
+                    try! self.recorder?.reset()
+                }))
 
-        present(refreshAlert, animated: true, completion: nil)
+                present(refreshAlert, animated: true, completion: nil)
     }
     
     func uploadToParse(){
-                let recording = PFObject(className: "Recording")
+                    let recording = PFObject(className: "Recording")
 
-                recording["name"] = "recording"
-                recording["author"] = PFUser.current()
-                
-                let path = getFileURL()
-                let data = NSData(contentsOf: path as URL)
-                  
-                let soundFile = PFFileObject(name: "recording.wav", data: data as! Data)
-                recording["sound"] = soundFile
-                recording.saveInBackground()
-    }
-    
-    func getCacheDirectory() -> String {
-           let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true) as! [String]
-           
-           return paths[0]
-       }
-    
-    func getFileURL() -> NSURL {
-           let documentDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                    recording["name"] = "recording"
+                    recording["author"] = PFUser.current()
+                    
+                    guard let path = recorder?.audioFile?.url else { return;}
+                    let data = NSData(contentsOf: path as URL)
+                      
+            let soundFile = PFFileObject(name: "recording.caf", data: data! as Data)
+                    recording["sound"] = soundFile
+                    recording.saveInBackground()
+        }
+        
+        func getCacheDirectory() -> String {
+               let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true) as! [String]
+               
+               return paths[0]
+           }
+        
+        func getFileURL() -> NSURL {
+               let documentDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 
-           //let nestedFolderURL = documentDirectory.appendingPathComponent("Recordings")
-           let fileURL = documentDirectory.appendingPathComponent(fileName)
-           
-           return fileURL as NSURL
-       }
+               //let nestedFolderURL = documentDirectory.appendingPathComponent("Recordings")
+               let fileURL = documentDirectory.appendingPathComponent(fileName)
+               
+               return fileURL as NSURL
+           }
 
     /*
     // MARK: - Navigation
