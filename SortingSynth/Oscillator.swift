@@ -19,11 +19,8 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var osc = DynamicOscillator()
     @Published var waveTableIndex: Int = 0
     @Published var sortIndex: Int = 0
-    @Published var delay = Delay(DynamicOscillator())
-    @Published var reverb = Reverb(DynamicOscillator())
-    @Published var isDelay: Bool = false
-    @Published var isReverb: Bool = true
-    @Published var currentNote: MIDINoteNumber = 0
+
+    
     //is the synth playing?
     @Published var isPlaying: Bool = true {
         didSet { isPlaying ? osc.start() : osc.stop() }
@@ -77,36 +74,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     //starts playing the synth
     //currently set to hardcoded values, this will become dynamic
     func noteOn() {
-        
-        /*
-        //effects chain
-        if isReverb && isDelay{
-            delay = Delay(osc)
-            reverb = Reverb(delay)
-            engine.output = reverb
-        } else if isReverb{
-            reverb = Reverb(osc)
-            engine.output = reverb
-        } else if isDelay {
-            delay = Delay(osc)
-            engine.output = delay
-        } else {
-            engine.output = osc
-        }
-         */
-        delay = Delay(osc)
-        reverb = Reverb(delay)
-        delay.bypass()
-        reverb.bypass()
-        if isDelay {
-            delay.play()
-        }
-        if isReverb{
-            reverb.play()
-        }
-        engine.output = reverb
-
-        
         isPlaying = true
         osc.amplitude = 0.2 //size of the waveform in relation to the audio room
         osc.frequency = 220.0 //number of cycles per sec (Hz)
@@ -123,14 +90,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         //
     }
     
-    //take input integer and converts it to UInt8 midi note
-    //uses audiokit's midinotetofrequency function to convert to frequency double
-    func setFrequency(note: Int){
-        currentNote = numericCast(note)
-        self.osc.frequency = currentNote.midiNoteToFrequency()
-        Thread.sleep(forTimeInterval: 0.050)
-    }
-    
     //----------------------------------------------------------
     //Bubble Sort: O((n^2)/2)
     func bubbleSort(_ array: [Int]) {
@@ -139,14 +98,12 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                     for value in 1...bubbleArray.count - 1 {
                         if bubbleArray[value-1] < bubbleArray[value] {
                             let largerValue = bubbleArray[value-1]
-                           // self.osc.frequency = Float(bubbleArray[value]*110)
-                            setFrequency(note: bubbleArray[value])
-                           // Thread.sleep(forTimeInterval: 0.050)
+                            self.osc.frequency = Float(bubbleArray[value]*110)
+                            Thread.sleep(forTimeInterval: 0.050)
                             bubbleArray[value-1] = bubbleArray[value]
                             bubbleArray[value] = largerValue
-                            setFrequency(note: bubbleArray[value])
-                            //self.osc.frequency = Float(bubbleArray[value]*110)
-                           // Thread.sleep(forTimeInterval: 0.050)
+                            self.osc.frequency = Float(bubbleArray[value]*110)
+                            Thread.sleep(forTimeInterval: 0.050)
 
                         }
                     }
@@ -163,9 +120,11 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         for x in 1..<insArray.count {
             var y = x
             while y > 0 && insArray[y] > insArray[y - 1] {
-                setFrequency(note:insArray[y])
+                self.osc.frequency = Float(insArray[y]*110)
+                Thread.sleep(forTimeInterval: 0.050)
                 insArray.swapAt(y - 1, y)
-                setFrequency(note:insArray[y])
+                self.osc.frequency = Float(insArray[y]*110)
+                Thread.sleep(forTimeInterval: 0.050)
                 y -= 1
             }
         }
@@ -174,7 +133,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     }
     
     //----------------------------------------------------------
-    //Selection Sort: O(n^2)
+    //Selection Sort: O(n^2()
     //a modified insertion sort
     func selectionSort(_ array: [Int]){
         var selectionArray = array
@@ -183,14 +142,17 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             var lowest = x
             for y in x + 1 ..< selectionArray.count {
                 if selectionArray[y] < selectionArray[lowest] {
-                    setFrequency(note:selectionArray[y])
+                    self.osc.frequency = Float(selectionArray[y]*110)
+                    Thread.sleep(forTimeInterval: 0.050)
                     lowest = y
                 }
             }
             if x != lowest {
-                setFrequency(note: selectionArray[x])
+                self.osc.frequency = Float(selectionArray[x]*110)
+                Thread.sleep(forTimeInterval: 0.050)
                 selectionArray.swapAt(x, lowest)
-                setFrequency(note: selectionArray[x])
+                self.osc.frequency = Float(selectionArray[x]*110)
+                Thread.sleep(forTimeInterval: 0.050)
             }
         }
         //return selectionArray
@@ -231,7 +193,8 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             arr2Index += 1
         }
         for i in sortedArray{
-            setFrequency(note: i)
+            self.osc.frequency = Float(i*110)
+            Thread.sleep(forTimeInterval: 0.050)
         }
         return sortedArray
         
