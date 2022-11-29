@@ -7,6 +7,7 @@
 
 import UIKit
 import Parse
+import Bolts
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var sound = OscillatorConductor()

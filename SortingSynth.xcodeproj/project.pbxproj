@@ -19,6 +19,9 @@
 		21C587612928147200F13FA4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 21C587602928147200F13FA4 /* AudioKit */; };
 		31CA2A1C6CB345362E3510EF /* Pods_SortingSynth_SortingSynthUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 194D68A84F790A2325FB62B9 /* Pods_SortingSynth_SortingSynthUITests.framework */; };
 		390CD29529259B07002BBBC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390CD29429259B07002BBBC4 /* Assets.xcassets */; };
+		395442CF29356ACA007905B7 /* RecordingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395442CE29356ACA007905B7 /* RecordingCell.swift */; };
+		395442D1293572BC007905B7 /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395442D0293572BC007905B7 /* RecordingsViewController.swift */; };
+		395442D32935B109007905B7 /* PlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395442D22935B109007905B7 /* PlaybackViewController.swift */; };
 		39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610C8C291EC82100A0915A /* LoginViewController.swift */; };
 		39610C8F291EC83F00A0915A /* SynthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39610C8E291EC83F00A0915A /* SynthViewController.swift */; };
 		397C316B2926CC31002F15F0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 397C316A2926CC31002F15F0 /* MediaPlayer.framework */; };
@@ -59,6 +62,9 @@
 		21962FAF291DD979006094FC /* SortingSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITests.swift; sourceTree = "<group>"; };
 		21962FB1291DD979006094FC /* SortingSynthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSynthUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		390CD29429259B07002BBBC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		395442CE29356ACA007905B7 /* RecordingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCell.swift; sourceTree = "<group>"; };
+		395442D0293572BC007905B7 /* RecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
+		395442D22935B109007905B7 /* PlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackViewController.swift; sourceTree = "<group>"; };
 		39610C8C291EC82100A0915A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		39610C8E291EC83F00A0915A /* SynthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynthViewController.swift; sourceTree = "<group>"; };
 		397C316A2926CC31002F15F0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -133,6 +139,9 @@
 				39610C8E291EC83F00A0915A /* SynthViewController.swift */,
 				212843D7292806E90076B41F /* Oscillator.swift */,
 				39B59953292547F400EA326B /* SettingsViewController.swift */,
+				395442D0293572BC007905B7 /* RecordingsViewController.swift */,
+				395442CE29356ACA007905B7 /* RecordingCell.swift */,
+				395442D22935B109007905B7 /* PlaybackViewController.swift */,
 				21962F94291DD975006094FC /* Main.storyboard */,
 				21962F99291DD979006094FC /* LaunchScreen.storyboard */,
 				390CD29429259B07002BBBC4 /* Assets.xcassets */,
@@ -429,9 +438,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395442D32935B109007905B7 /* PlaybackViewController.swift in Sources */,
+				395442D1293572BC007905B7 /* RecordingsViewController.swift in Sources */,
 				39610C8D291EC82100A0915A /* LoginViewController.swift in Sources */,
 				39610C8F291EC83F00A0915A /* SynthViewController.swift in Sources */,
 				21962F8F291DD975006094FC /* AppDelegate.swift in Sources */,
+				395442CF29356ACA007905B7 /* RecordingCell.swift in Sources */,
 				212843D8292806E90076B41F /* Oscillator.swift in Sources */,
 				39B59954292547F400EA326B /* SettingsViewController.swift in Sources */,
 				21962F91291DD975006094FC /* SceneDelegate.swift in Sources */,
