@@ -24,7 +24,8 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.rowHeight = 55.0
+
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -70,7 +71,7 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
         let recording = recordings[indexPath.row]
         
         cell.nameLabel.text = recording["name"] as? String
-        cell.dateLabel.text = recording["createdAt"] as? String
+//        cell.dateLabel.text = recording["createdAt"] as? String
         
         return cell
         // MARK: - Table view data source
