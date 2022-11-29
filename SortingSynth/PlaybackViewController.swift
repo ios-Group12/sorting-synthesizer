@@ -8,16 +8,16 @@
 import UIKit
 
 class PlaybackViewController: UIViewController {
+        
 
     @IBAction func playSound(_ sender: Any) {
         AudioPlayer.play()
     }
     
+    
     @IBAction func pauseSound(_ sender: Any) {
         AudioPlayer.pause()
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

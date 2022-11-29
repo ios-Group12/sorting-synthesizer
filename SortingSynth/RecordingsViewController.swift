@@ -19,6 +19,8 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
     
     
     var recordings = [PFObject]()
+    var iDArray = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,23 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
             if recordings != nil {
                 self.recordings = recordings!
                 self.tableView.reloadData()
+            }
+        }
+        
+        let objectIdQuery = PFQuery(className: "Recording")
+        objectIdQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                // Log details of the failure
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                // The find succeeded.
+                print("Successfully retrieved \(objects.count) scores.")
+                // Do something with the found objects
+                for object in objects {
+                    self.iDArray.append(object.value(forKey: "objectId") as! String)
+                    self.tableView.reloadData()
+                }
+                print(self.iDArray)
             }
         }
     }
@@ -67,20 +86,22 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
 
     func grabRecording(){
         let soundQuery = PFQuery(className: "Recording")
-        soundQuery.getObjectInBackground(withId:recording[SelectedRecording!], block: { (object : PFObject?, error : Error?) ->  Void in
-            if let AudioFileURLTemp : PFFile = object?.value(forKey: "sound") as? PFFile {
-                print(AudioFileURLTemp)
+        soundQuery.getObjectInBackground(withId:iDArray[SelectedRecording], block: { (object : PFObject?, error : Error?) ->  Void in
+            if let AudioFile : PFFileObject = object?.object(forKey: "sound") as? PFFileObject {
                 
-                AudioPlayer = AVPlayer(url: NSURL(string: AudioFileURLTemp.url!) as! URL)
+                let AudioFileURLTemp = AudioFile.url!
+                print("URL" + AudioFileURLTemp)
+                
+                
+                AudioPlayer = AVPlayer(url: NSURL(string: AudioFileURLTemp)! as URL)
                 AudioPlayer.play()
             }
-            
-            func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-                
-                SelectedRecording = indexPath.row
-                grabRecording()
-            }
-            
         })
-        }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        SelectedRecording = indexPath.row
+        grabRecording()
+    }
+    
+}

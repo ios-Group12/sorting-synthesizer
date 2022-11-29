@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ag9-7o-e0W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uxn-lW-aYz">
     <device id="retina6_1" orientation="landscape" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUp-HY-xeA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748.7723214285713" y="934.78260869565224"/>
+            <point key="canvasLocation" x="1734" y="926"/>
         </scene>
         <!--Playback View Controller-->
         <scene sceneID="m7I-jY-gYn">
@@ -279,23 +279,23 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9o-sy-u0D">
-                                <rect key="frame" x="732" y="317" width="44" height="37"/>
+                                <rect key="frame" x="20" y="3" width="44" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system" title=""/>
                                 <connections>
-                                    <action selector="playSound:" destination="ag9-7o-e0W" eventType="touchUpInside" id="nuw-D4-frt"/>
+                                    <action selector="playSound:" destination="ag9-7o-e0W" eventType="touchUpInside" id="4Pj-3b-VNh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Sa-aV-EaA">
-                                <rect key="frame" x="812" y="318" width="41" height="35"/>
+                                <rect key="frame" x="821" y="329" width="24" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="l  l"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
-                                    <action selector="pauseSound:" destination="ag9-7o-e0W" eventType="touchUpInside" id="zDL-ih-QUX"/>
+                                    <action selector="pauseSound:" destination="ag9-7o-e0W" eventType="touchUpInside" id="mDx-2m-cDV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -308,14 +308,10 @@
                             <constraint firstItem="w3h-Yv-VpG" firstAttribute="trailing" secondItem="L3g-HY-1rZ" secondAttribute="trailing" id="fHo-BY-2cd"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="pauseSound" destination="2lV-iI-G1C" id="oYR-7A-43c"/>
-                        <outlet property="playSound" destination="o9o-sy-u0D" id="Slc-jT-l02"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gww-Ij-x8U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747.7678571428571" y="-55.072463768115945"/>
+            <point key="canvasLocation" x="1751" y="-101"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xgD-WA-ScG">
