@@ -141,13 +141,13 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
     func uploadToParse(){
                     let recording = PFObject(className: "Recording")
 
-                    recording["name"] = "recording"
+                    recording["name"] = SynthViewController.createDateFileName()
                     recording["author"] = PFUser.current()
                     
                     guard let path = recorder?.audioFile?.url else { return;}
                     let data = NSData(contentsOf: path as URL)
                       
-            let soundFile = PFFileObject(name: "recording.caf", data: data! as Data)
+        let soundFile = PFFileObject(name: SynthViewController.createDateFileName() + ".caf", data: data! as Data)
                     recording["sound"] = soundFile
                     recording.saveInBackground()
         }
@@ -157,6 +157,12 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                
                return paths[0]
            }
+    
+    private static func createDateFileName() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
+        return dateFormatter.string(from: Date())
+    }
         
         func getFileURL() -> NSURL {
                let documentDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
