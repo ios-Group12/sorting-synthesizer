@@ -64,14 +64,12 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
     }
 
 
-}
+
     func grabRecording(){
         let soundQuery = PFQuery(className: "Recording")
-        soundQuery.getObjectInBackground(withId:recordings[SelectedRecording!] ,block: { (object : PFObject?, error : Error?) ->  Void in
+        soundQuery.getObjectInBackground(withId:recording[SelectedRecording!], block: { (object : PFObject?, error : Error?) ->  Void in
             if let AudioFileURLTemp : PFFile = object?.value(forKey: "sound") as? PFFile {
                 print(AudioFileURLTemp)
-                
-                
                 
                 AudioPlayer = AVPlayer(url: NSURL(string: AudioFileURLTemp.url!) as! URL)
                 AudioPlayer.play()
@@ -83,8 +81,6 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
                 grabRecording()
             }
             
-            
-            //        let soundFile = recording["sound"] as! PFFileObject
-            //        let urlString = soundFile.url!
-            //        let url = URL(string: urlString)!
-    
+        })
+        }
+    }

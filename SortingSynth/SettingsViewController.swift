@@ -115,15 +115,6 @@ class SettingsViewController: UIViewController {
     
     
         
-        //    @IBAction func volumeValue(_ sender: Any) {
-        //
-        //        volumeSlider.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/2))
-        //        if let thumbImage = UIImage(named: "thumb-image") {
-        //            volumeSlider.setThumbImage(thumbImage, for: .normal)
-        //            volumeSlider.setThumbImage(thumbImage, for: .highlighted)
-        //        }
-        //    }
-        //
         
     }
     
