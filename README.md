@@ -186,6 +186,8 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+![11:29 synth](https://user-images.githubusercontent.com/97559945/204611561-98e84eb2-b2c9-43fb-a689-a274345293e2.gif)
+
 
 ![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/97559945/201757687-4bcfabcd-6881-43b5-922d-e7cefcc4b001.gif)
 
