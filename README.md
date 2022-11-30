@@ -27,23 +27,14 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 1) [x] User can register
 2) [x] User can log in
 3) [x] User can change volume
-
-![ezgif com-gif-maker (10)](https://user-images.githubusercontent.com/97559945/203369013-99923b08-223d-430f-9ed8-a91f095697fa.gif)
-
 4) [x] User can change oscillator
-
-![](oscillator.gif)
-
 5) [ ] User can +/- octaves
 6) [ ] User can select musical keys
 7) [x] User can change sorting algorithm
 8) [x] User can start/stop the synthesizer
-
-
 **Optional Nice-to-have Stories**
 
 1) [x] User can save a recording
- ![](http://g.recordit.co/Q7mQo7P2JU.gif) 
 2) [x] User can add effects
 3) [ ] User can "share" a recording
 4) [ ] User can direct download the recording
@@ -186,8 +177,4 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-![11:29 synth](https://user-images.githubusercontent.com/97559945/204611561-98e84eb2-b2c9-43fb-a689-a274345293e2.gif)
-
-
-![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/97559945/201757687-4bcfabcd-6881-43b5-922d-e7cefcc4b001.gif)
-
+![](sortingsynth.gif)
