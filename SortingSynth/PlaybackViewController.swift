@@ -9,7 +9,11 @@ import UIKit
 
 class PlaybackViewController: UIViewController {
         
+    @IBAction func barButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
 
+    }
+    
     @IBAction func playSound(_ sender: Any) {
         AudioPlayer.play()
     }

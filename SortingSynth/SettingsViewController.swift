@@ -17,6 +17,11 @@ protocol MyDataSendingDelegateProtocol {
 
 class SettingsViewController: UIViewController {
     
+    
+
+    
+    @IBOutlet weak var reverbSelectorSwitch: UIImageView!
+    @IBOutlet weak var delaySelectorSwitch: UIImageView!
     @IBOutlet weak var synthSelectorSwitch: UIImageView!
     @IBOutlet weak var sortSelectorSwitch: UIImageView!
     @IBOutlet weak var volumeSliderView: MPVolumeView!
@@ -47,6 +52,40 @@ class SettingsViewController: UIViewController {
         sortSelectorSwitch.transform = CGAffineTransform(rotationAngle: radians)
     }
     
+    //delay was toggled
+    //if delay is on, turn it off
+    //if delay is off, turn it on
+    
+    
+    @IBAction func onDelayPress(_ sender: Any) {
+        switch settingSound?.isDelay{
+        case true:
+            delaySelectorSwitch.image = UIImage(named: "toggleOff")
+            settingSound?.delay.bypass()
+        case false:
+            delaySelectorSwitch.image = UIImage(named: "toggleOn")
+            settingSound?.delay.play()
+        default: settingSound?.delay.bypass()
+        }
+        settingSound?.isDelay = !(settingSound?.isDelay ?? false)
+    }
+    
+    //reverb was toggled
+    //if reverb is on, turn it off
+    //if reverb is off, turn it on
+    @IBAction func onReverbPress(_ sender: Any) {
+        switch settingSound?.isReverb{
+        case true:
+            reverbSelectorSwitch.image = UIImage(named: "toggleOff")
+            settingSound?.reverb.bypass()
+        case false:
+            reverbSelectorSwitch.image = UIImage(named: "toggleOn")
+            settingSound?.reverb.play()
+        default: settingSound?.reverb.bypass()
+        }
+        settingSound?.isReverb = !(settingSound?.isReverb ?? false)
+    }
+    
     //bar button triggers delegate to send back index value of waveTable
     //dismisses the view if successful
     @IBAction func onBarButtonClick(_ sender: Any) {
@@ -65,11 +104,30 @@ class SettingsViewController: UIViewController {
         volumeSliderView.transform = CGAffineTransform(rotationAngle: (CGFloat.pi*3/2))
         volumeSliderView.setMaximumVolumeSliderImage(UIImage(named: "blackline1"), for: .normal)
         volumeSliderView.setVolumeThumbImage(UIImage(named: "thumb-image"), for: .normal)
-        setRotaryPosition() //set knob positions
+        setDialPositions() //set knob positions
         }
     
     //this is used to set the initial rotary knob position
-    func setRotaryPosition(){
+    func setDialPositions(){
+        
+        //toggle switches
+        switch settingSound?.isDelay{
+        case true:
+            delaySelectorSwitch.image = UIImage(named: "toggleOn")
+        case false:
+            delaySelectorSwitch.image = UIImage(named: "toggleOff")
+        default: delaySelectorSwitch.image = UIImage(named: "toggleOff")
+        }
+        
+        switch settingSound?.isReverb{
+        case true:
+            reverbSelectorSwitch.image = UIImage(named: "toggleOn")
+        case false:
+            reverbSelectorSwitch.image = UIImage(named: "toggleOff")
+        default: reverbSelectorSwitch.image = UIImage(named: "toggleOff")
+        }
+        
+        //rotary knobs
         let radians: CGFloat
         switch settingSound?.waveTableIndex{
             case 0:
@@ -115,7 +173,14 @@ class SettingsViewController: UIViewController {
     
     
         
+        //    @IBAction func volumeValue(_ sender: Any) {
+        //
+        //        volumeSlider.transform = CGAffineTransform(rotationAngle: (CGFloat.pi/2))
+        //        if let thumbImage = UIImage(named: "thumb-image") {
+        //            volumeSlider.setThumbImage(thumbImage, for: .normal)
+        //            volumeSlider.setThumbImage(thumbImage, for: .highlighted)
+        //        }
+        //    }
+        //
         
     }
-    
-
