@@ -1,0 +1,5 @@
+Target dependency graph (3 targets)
+Pods-SortingSynth in Pods, no dependencies
+Pods-SortingSynth-SortingSynthUITests in Pods, no dependencies
+Pods-SortingSynthTests in Pods, depends on:
+Pods-SortingSynth in Pods (explicit)

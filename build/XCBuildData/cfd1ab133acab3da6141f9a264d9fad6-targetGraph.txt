@@ -1,0 +1,7 @@
+Target dependency graph (3 targets)
+Bolts in Pods, no dependencies
+Parse-Parse in Pods, depends on:
+Bolts in Pods (implicit dependency via options '-framework Bolts' in build setting 'OTHER_LDFLAGS')
+Parse in Pods, depends on:
+Bolts in Pods (explicit)
+Parse-Parse in Pods (explicit)
