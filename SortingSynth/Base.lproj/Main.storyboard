@@ -206,10 +206,22 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXt-6d-aS6" userLabel="shareButton">
+                                                    <rect key="frame" x="428" y="12" width="49" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
+                                                        <color key="baseForegroundColor" systemColor="systemBrownColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="share:" destination="izR-uI-CnI" eventType="touchUpInside" id="Itc-Fd-X0t"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="CPO-rz-lDT" id="6xi-JV-GWT"/>
+                                            <outlet property="shareButton" destination="tXt-6d-aS6" id="wCu-g5-jsE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -608,6 +620,7 @@
         <image name="sine" width="489" height="366"/>
         <image name="slider.vertical.3" catalog="system" width="128" height="110"/>
         <image name="square" width="440" height="209"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="toggleOff" width="199" height="328"/>
         <image name="waveform.and.mic" catalog="system" width="128" height="125"/>
         <image name="woodtexture" width="667" height="330"/>
@@ -625,6 +638,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
