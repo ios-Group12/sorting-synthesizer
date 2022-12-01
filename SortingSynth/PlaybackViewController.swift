@@ -6,38 +6,34 @@
 //
 
 import UIKit
+import AudioKit
+
 
 class PlaybackViewController: UIViewController {
-        
+
+
+
+    @IBOutlet weak var playImage: UIImageView!
+    @IBOutlet weak var pauseImage: UIImageView!
+
     @IBAction func barButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
 
     }
-    
+
     @IBAction func playSound(_ sender: Any) {
         AudioPlayer.play()
+        self.playImage.image = UIImage(named: "PLAYING")
+
     }
-    
-    
     @IBAction func pauseSound(_ sender: Any) {
         AudioPlayer.pause()
+        self.playImage.image = UIImage(named: "PLAY")
+
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
