@@ -10,17 +10,17 @@ import AudioKit
 
 
 class PlaybackViewController: UIViewController {
-        
-    
-    
+
+
+
     @IBOutlet weak var playImage: UIImageView!
     @IBOutlet weak var pauseImage: UIImageView!
-    
+
     @IBAction func barButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
 
     }
-    
+
     @IBAction func playSound(_ sender: Any) {
         AudioPlayer.play()
         self.playImage.image = UIImage(named: "PLAYING")
@@ -31,7 +31,7 @@ class PlaybackViewController: UIViewController {
         self.playImage.image = UIImage(named: "PLAY")
 
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
