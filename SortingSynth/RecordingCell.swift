@@ -10,7 +10,9 @@ import UIKit
 class RecordingCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
