@@ -24,7 +24,85 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
     var NameArray = [String]()
 
 
-
+    @IBAction func share(_ sender: UIButton) {
+        let soundQuery = PFQuery(className: "Recording")
+        soundQuery.getObjectInBackground(withId:iDArray[sender.tag], block: { (object : PFObject?, error : Error?) ->  Void in
+            if let AudioFile : PFFileObject = object?.object(forKey: "sound") as? PFFileObject {
+                
+                let audioFileURL = AudioFile.url!
+                let url = URL(string: audioFileURL)
+                let documentsUrl: URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let tempFileUrl = documentsUrl.appendingPathComponent("recording.caf")
+                
+                let sessionConfig = URLSessionConfiguration.default
+                let session = URLSession(configuration: sessionConfig)
+                let request = URLRequest(url: url!)
+                let sem = DispatchSemaphore.init(value: 0)
+                
+                // Delete temporary file if for some reason it wasn't removed before
+                do {
+                    try FileManager.default.removeItem(at: tempFileUrl)
+                    print("Temporary file has been deleted")
+                } catch {
+                    print(error)
+                }
+                
+                let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+                    if let tempLocalUrl = tempLocalUrl, error == nil {
+                        // Success
+                        if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                            print("Successfully downloaded. Status code: \(statusCode)")
+                        }
+                        // Download file
+                        do {
+                            try FileManager.default.copyItem(at: tempLocalUrl, to: tempFileUrl)
+                        } catch (let writeError) {
+                            print("Error creating a file \(tempFileUrl) : \(writeError)")
+                        }
+                        sem.signal()
+                    } else {
+                        print("Error took place while downloading a file. Error description: %@", error?.localizedDescription as Any);
+                    }
+                }
+                
+                task.resume()
+                sem.wait()
+                // Display share sheet
+                let objectsToShare = [tempFileUrl]
+                let activityController = UIActivityViewController(activityItems: objectsToShare as [Any], applicationActivities: nil)
+                let excludedActivities = [UIActivity.ActivityType.postToFlickr, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.print, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.assignToContact, UIActivity.ActivityType.saveToCameraRoll, UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.postToFlickr, UIActivity.ActivityType.postToVimeo, UIActivity.ActivityType.postToTencentWeibo]
+                
+                activityController.excludedActivityTypes = excludedActivities
+                
+                self.present(activityController, animated: true, completion: nil)
+                // Action performed on Share Sheet dismissal
+                activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:
+                Bool, arrayReturnedItems: [Any]?, error: Error?) in
+                    if completed {
+                        do {
+                            try FileManager.default.removeItem(at: tempFileUrl)
+                            print("Temporary file has been deleted")
+                        } catch {
+                            print(error)
+                        }
+                        return
+                    } else {
+                        do {
+                            try FileManager.default.removeItem(at: tempFileUrl)
+                            print("Temporary File has been deleted")
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    if let shareError = error {
+                        print("error while sharing: \(shareError.localizedDescription)")
+                    }
+                }
+            }
+            
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 55.0
@@ -81,6 +159,8 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
         let recording = recordings[indexPath.row]
 
         cell.nameLabel.text = recording["name"] as? String
+        cell.shareButton.tag = indexPath.row
+
 
         return cell
     }
