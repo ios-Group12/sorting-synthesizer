@@ -104,7 +104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRY-8V-tdl">
-                                <rect key="frame" x="-4" y="347" width="854" height="41"/>
+                                <rect key="frame" x="-5" y="347" width="854" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Recordings" width="149" id="Qtj-iG-GA0">
@@ -217,9 +217,21 @@
                                                         <action selector="share:" destination="izR-uI-CnI" eventType="touchUpInside" id="Itc-Fd-X0t"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciF-ju-wMs" userLabel="deleteButton">
+                                                    <rect key="frame" x="343" y="13" width="48" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system">
+                                                        <color key="baseForegroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteRecording:" destination="izR-uI-CnI" eventType="touchUpInside" id="Daq-vI-hmr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="deleteButton" destination="HdH-V8-hVK" id="hZa-TG-1TY"/>
                                             <outlet property="nameLabel" destination="CPO-rz-lDT" id="6xi-JV-GWT"/>
                                             <outlet property="shareButton" destination="tXt-6d-aS6" id="wCu-g5-jsE"/>
                                         </connections>
@@ -261,7 +273,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-a4-WgL">
-                                <rect key="frame" x="-4" y="349" width="853" height="41"/>
+                                <rect key="frame" x="-5" y="349" width="852" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="SynthButton" width="144.66666666666669" id="tnr-B6-z6J">
@@ -353,7 +365,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wa-pu-3j4">
-                                <rect key="frame" x="-4" y="0.0" width="854" height="44"/>
+                                <rect key="frame" x="-5" y="0.0" width="854" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Settings" id="yve-e1-NvU">
@@ -622,6 +634,7 @@
         <image name="square" width="440" height="209"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="toggleOff" width="199" height="328"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <image name="waveform.and.mic" catalog="system" width="128" height="125"/>
         <image name="woodtexture" width="667" height="330"/>
         <namedColor name="AccentColor">

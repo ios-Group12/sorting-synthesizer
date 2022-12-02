@@ -23,7 +23,28 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
     var iDArray = [String]()
     var NameArray = [String]()
 
+    @IBAction func deleteRecording(_ sender: UIButton) {
+        let refreshAlert = UIAlertController(title: "Delete Recording", message: "Delete this recording?", preferredStyle: UIAlertController.Style.alert)
 
+                refreshAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+                    let query = PFQuery(className:"Recording")
+                    query.getObjectInBackground(withId: self.iDArray[sender.tag]) { (recording, error) in
+                        if error == nil {
+                            self.deleteObject(item: recording!)
+                        } else {
+                            // Fail!
+                            print(error?.localizedDescription as Any)
+                        }
+                    }
+                }))
+
+                refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                    //do nothing
+                }))
+
+                present(refreshAlert, animated: true, completion: nil)
+    }
+    
     @IBAction func share(_ sender: UIButton) {
         let soundQuery = PFQuery(className: "Recording")
         soundQuery.getObjectInBackground(withId:iDArray[sender.tag], block: { (object : PFObject?, error : Error?) ->  Void in
@@ -103,6 +124,18 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
         })
     }
     
+    func deleteObject(item: PFObject) {
+        item.deleteInBackground() { (succeeded, error) in
+            if (succeeded) {
+                print("success")
+                self.refreshRecordings()
+            } else {
+                // There was an error. Check the errors localizedDescription.
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 55.0
@@ -160,7 +193,7 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
 
         cell.nameLabel.text = recording["name"] as? String
         cell.shareButton.tag = indexPath.row
-
+        cell.deleteButton.tag = indexPath.row
 
         return cell
     }
@@ -218,6 +251,38 @@ class RecordingsViewController: UIViewController, UITableViewDataSource, UITable
             if recordings != nil {
                 self.recordings = recordings!
                 self.tableView.reloadData()
+            }
+        }        
+    }
+    
+    func refreshRecordings(){
+        let query = PFQuery(className: "Recording")
+        query.includeKeys(["createdAt","name"])
+        query.limit = numberOfRecordings
+
+        query.findObjectsInBackground{(recordings, error) in
+            if recordings != nil {
+                self.recordings = recordings!
+                self.tableView.reloadData()
+            }
+        }
+        
+        let objectIdQuery = PFQuery(className: "Recording")
+        objectIdQuery.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                // Log details of the failure
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                // The find succeeded.
+                print("Successfully retrieved \(objects.count) scores.")
+                self.iDArray.removeAll()
+                // Do something with the found objects
+                for object in objects {
+                    self.iDArray.append(object.value(forKey: "objectId") as! String)
+                    self.NameArray.append(object.value(forKey: "name") as! String)
+                    self.tableView.reloadData()
+                }
+                print(self.iDArray)
             }
         }
     }
