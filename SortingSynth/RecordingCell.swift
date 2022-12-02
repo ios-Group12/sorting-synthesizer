@@ -12,6 +12,7 @@ import UIKit
 class RecordingCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
+    @IBOutlet weak var deleteButton: UIView!
     @IBOutlet weak var shareButton: UIButton!
     
     override func awakeFromNib() {
