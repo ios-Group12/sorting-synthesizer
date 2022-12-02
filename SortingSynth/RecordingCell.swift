@@ -11,10 +11,11 @@ import UIKit
 
 class RecordingCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-
-    @IBOutlet weak var deleteButton: UIView!
+    
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var editButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
