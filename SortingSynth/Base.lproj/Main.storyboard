@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ag9-7o-e0W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="landscape" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -145,7 +145,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRY-8V-tdl">
-                                <rect key="frame" x="-7" y="347" width="855" height="39"/>
+                                <rect key="frame" x="-8" y="344" width="880" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Recordings" width="149" id="Qtj-iG-GA0">
@@ -206,11 +206,11 @@
             <objects>
                 <viewController id="izR-uI-CnI" customClass="RecordingsViewController" customModule="SortingSynth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2PX-TR-H3j">
-                        <rect key="frame" x="0.0" y="0.0" width="905" height="281"/>
+                        <rect key="frame" x="0.0" y="0.0" width="905" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IrB-UN-h0e">
-                                <rect key="frame" x="0.0" y="93" width="905" height="246"/>
+                                <rect key="frame" x="0.0" y="93" width="905" height="226"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -222,7 +222,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3km-Cf-GXW">
-                                                    <rect key="frame" x="705.66666666666663" y="19.000000000000004" width="104.33333333333337" height="34.333333333333343"/>
+                                                    <rect key="frame" x="695.66666666666663" y="15.000000000000004" width="104.33333333333337" height="34.333333333333343"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciF-ju-wMs" userLabel="deleteButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="34.333333333333336"/>
@@ -247,7 +247,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fbB-py-Sg4">
-                                                    <rect key="frame" x="28.000000000000014" y="-5.3333333333333321" width="243.33333333333337" height="67"/>
+                                                    <rect key="frame" x="28.000000000000014" y="-9.3333333333333357" width="243.33333333333337" height="67"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmR-lF-hDE">
                                                             <rect key="frame" x="0.0" y="0.0" width="51.666666666666664" height="67"/>
@@ -268,7 +268,6 @@
                                                                     <imageReference key="highlightedImage" image="waveform.and.mic" catalog="system" renderingMode="template"/>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="RZi-XF-u1F" firstAttribute="centerY" secondItem="XmR-lF-hDE" secondAttribute="centerY" id="6JL-dE-CEX"/>
                                                                 <constraint firstItem="RZi-XF-u1F" firstAttribute="top" secondItem="XmR-lF-hDE" secondAttribute="topMargin" constant="6" id="85G-Dz-kd1"/>
@@ -308,9 +307,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fbB-py-Sg4" firstAttribute="leading" secondItem="HdH-V8-hVK" secondAttribute="leadingMargin" constant="8" id="8tt-Y4-0fa"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3km-Cf-GXW" secondAttribute="trailing" constant="75" id="ReR-ag-kkY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3km-Cf-GXW" secondAttribute="trailing" constant="85" id="ReR-ag-kkY"/>
                                                 <constraint firstItem="3km-Cf-GXW" firstAttribute="centerY" secondItem="fbB-py-Sg4" secondAttribute="centerY" constant="8" id="Tgb-Yt-AR3"/>
-                                                <constraint firstItem="3km-Cf-GXW" firstAttribute="top" secondItem="HdH-V8-hVK" secondAttribute="topMargin" constant="8" id="ejU-2p-QMT"/>
+                                                <constraint firstItem="3km-Cf-GXW" firstAttribute="top" secondItem="HdH-V8-hVK" secondAttribute="topMargin" constant="4" id="ejU-2p-QMT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -332,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUp-HY-xeA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749.6478873239437" y="932.06106870229007"/>
+            <point key="canvasLocation" x="1749.6478873239437" y="931.29770992366412"/>
         </scene>
         <!--Playback View Controller-->
         <scene sceneID="m7I-jY-gYn">
@@ -343,7 +342,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-a4-WgL">
-                                <rect key="frame" x="-9" y="349" width="852" height="39"/>
+                                <rect key="frame" x="-13" y="346" width="868" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="SynthButton" width="144.66666666666669" id="tnr-B6-z6J">
@@ -361,7 +360,7 @@
                                 </items>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3g-HY-1rZ">
-                                <rect key="frame" x="-9" y="0.0" width="905" height="281"/>
+                                <rect key="frame" x="-9" y="21" width="905" height="260"/>
                                 <connections>
                                     <segue destination="izR-uI-CnI" kind="embed" id="N6v-Mh-6Fb"/>
                                 </connections>
@@ -398,9 +397,8 @@
                                     <action selector="playSound:" destination="ag9-7o-e0W" eventType="touchUpInside" id="4Pj-3b-VNh"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Recordings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOi-05-dkm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Recordings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOi-05-dkm">
                                 <rect key="frame" x="356" y="27" width="140" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -409,8 +407,11 @@
                         <viewLayoutGuide key="safeArea" id="w3h-Yv-VpG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xOi-05-dkm" firstAttribute="top" secondItem="nJi-3h-HJK" secondAttribute="top" constant="27" id="0lk-42-Vk5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="L3g-HY-1rZ" secondAttribute="trailing" constant="-64" id="5HW-1e-vLq"/>
-                            <constraint firstItem="L3g-HY-1rZ" firstAttribute="top" secondItem="nJi-3h-HJK" secondAttribute="topMargin" constant="-59" id="IJe-9T-CHg"/>
+                            <constraint firstItem="xOi-05-dkm" firstAttribute="centerX" secondItem="nJi-3h-HJK" secondAttribute="centerX" id="Ayy-FH-Yd1"/>
+                            <constraint firstItem="L3g-HY-1rZ" firstAttribute="top" secondItem="nJi-3h-HJK" secondAttribute="topMargin" constant="-38" id="IJe-9T-CHg"/>
+                            <constraint firstAttribute="trailing" secondItem="xOi-05-dkm" secondAttribute="trailing" constant="356" id="RaS-MX-igR"/>
                             <constraint firstAttribute="bottom" secondItem="L3g-HY-1rZ" secondAttribute="bottom" constant="112" id="akh-Kj-h0e"/>
                             <constraint firstItem="L3g-HY-1rZ" firstAttribute="leading" secondItem="nJi-3h-HJK" secondAttribute="leadingMargin" constant="-29" id="lt3-Mj-nsW"/>
                         </constraints>
@@ -442,7 +443,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wa-pu-3j4">
-                                <rect key="frame" x="-7" y="0.0" width="855" height="44"/>
+                                <rect key="frame" x="-8" y="0.0" width="853" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Settings" id="yve-e1-NvU">
