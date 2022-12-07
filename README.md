@@ -38,6 +38,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 2) [x] User can add effects
 3) [x] User can "share" a recording
 4) [x] User can direct download the recording
+5) [x] User can delete a recording
 
 ### 2. Screen Archetypes
 
