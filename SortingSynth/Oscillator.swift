@@ -108,8 +108,9 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     
     func SetSort(){
         let untrimmedArray = SetKeyArray()
-        let arraySlice = untrimmedArray[14...35]
-        var sortArray = Array(arraySlice)
+       // let arraySlice = untrimmedArray[14...35]
+       // var sortArray = Array(arraySlice)
+        var sortArray = untrimmedArray
         sortArray = sortArray.shuffled()
         switch sortIndex{
         case 0:
@@ -176,11 +177,11 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             break
         case 11:
         //F
-            selectedArray = [32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87,88,90,92,94,95,97,99,100,102,104,106,107,109,111,112,114,116,118,119,121,123,124,126]
+            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
             break
         default:
             //chromatic scale
-            selectedArray = Array(23...90)
+            selectedArray = Array(36...84)
             break
         }
         return selectedArray
