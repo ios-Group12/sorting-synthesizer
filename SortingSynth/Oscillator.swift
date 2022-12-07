@@ -25,6 +25,10 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var isReverb: Bool = false
     @Published var currentNote: MIDINoteNumber = 0
     @Published var mixer = Mixer()
+    @Published var speed: Double = 0.050 //default speed value
+    @Published var selectedKeyIndex1: Int = 0
+    @Published var selectedKeyIndex2: Int = -1
+    @Published var isMinor: Bool = false
     //is the synth playing?
     @Published var isPlaying: Bool = true {
         didSet { isPlaying ? osc.start() : osc.stop() }
@@ -69,7 +73,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     init() {
         mixer.addInput(osc) //add oscillator to mixer
         delay = Delay(osc) //process oscillator through delay node
-        reverb = Reverb(delay) //process oscillator through reverb node
+        reverb = Reverb(osc) //process oscillator through reverb node
         mixer.addInput(delay) //add delay node to mixer
         mixer.addInput(reverb) //add reverb node to mixer
         delay.bypass()
@@ -99,7 +103,87 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         osc.amplitude = 0.2 //size of the waveform in relation to the audio room
         osc.frequency = 220.0 //number of cycles per sec (Hz)
         SetWaveTable()
-        
+        SetSort()
+    }
+    
+    func SetSort(){
+        let untrimmedArray = SetKeyArray()
+        let arraySlice = untrimmedArray[14...35]
+        var sortArray = Array(arraySlice)
+        sortArray = sortArray.shuffled()
+        switch sortIndex{
+        case 0:
+            insertionSort(sortArray)
+        case 1:
+            //mergeSort has recursive paths, requires return values
+            //return to anonymous
+            _ = mergeSort(sortArray)
+        case 2:
+            bubbleSort(sortArray)
+        case 3:
+            selectionSort(sortArray)
+        default:
+            insertionSort(sortArray)
+        }
+    }
+    
+    func SetKeyArray()->[Int]{
+        let selectedArray: [Int]
+        switch selectedKeyIndex1{
+        case 0:
+        //cmaj
+           selectedArray=[36,38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81,83,84]
+            break
+        case 1:
+        //gmaj
+            selectedArray = [31,33,35,36,38,40,42,43,45,47,48,50,52,54,55,57,59,60,62,64,66,67,69,71,72,74,76,78,79]
+            break
+        case 2:
+        //dmaj
+            selectedArray = [38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81,83,85,86]
+            break
+        case 3:
+        //amaj
+            selectedArray = [33,35,37,38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81]
+            break
+        case 4:
+        //emaj
+            selectedArray = [40,42,44,45,47,49,51,52,54,56,57,59,61,63,64,66,68,69,71,73,75,76,78,80,81,83,85,87,88]
+            break
+        case 5:
+        //bmaj
+            selectedArray = [35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83]
+            break
+        case 6:
+        //f# major
+            selectedArray = [30,32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78]
+            break
+        case 7:
+        //Db
+            selectedArray = [37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85]
+            break
+        case 8:
+        //Ab
+            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            break
+        case 9:
+        //Eb
+            selectedArray = [39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87]
+            break
+        case 10:
+        //Bb
+            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            break
+        case 11:
+        //F
+            selectedArray = [32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87,88,90,92,94,95,97,99,100,102,104,106,107,109,111,112,114,116,118,119,121,123,124,126]
+            break
+        default:
+            //chromatic scale
+            selectedArray = Array(23...90)
+            break
+        }
+        return selectedArray
     }
     
     //stop the synth
@@ -112,8 +196,9 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     func setFrequency(note: Int){
         currentNote = numericCast(note)
         self.osc.frequency = currentNote.midiNoteToFrequency()
-        Thread.sleep(forTimeInterval: 0.050)
+        Thread.sleep(forTimeInterval: self.speed)
     }
+
     
     //----------------------------------------------------------
     //Bubble Sort: O((n^2)/2)
@@ -135,6 +220,9 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                         }
                     }
                 }
+        for i in bubbleArray{
+            setFrequency(note: i)
+        }
                 print("Sorted\(bubbleArray)")
                 //return arr
     }
@@ -153,6 +241,9 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                 y -= 1
             }
         }
+        for i in insArray{
+            setFrequency(note: i)
+        }
         print("Sorted\(insArray)")
        // return arr
     }
@@ -162,7 +253,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     //a modified insertion sort
     func selectionSort(_ array: [Int]){
         var selectionArray = array
-
+        
         for x in 0 ..< selectionArray.count - 1 {
             var lowest = x
             for y in x + 1 ..< selectionArray.count {
@@ -176,6 +267,10 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                 selectionArray.swapAt(x, lowest)
                 setFrequency(note: selectionArray[x])
             }
+        }
+        //grand finale
+        for i in selectionArray {
+            setFrequency(note: i)
         }
         //return selectionArray
         print("Sorted\(selectionArray)")
@@ -202,7 +297,6 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                 arr1Index += 1
                 sortedArray.append(arr2[arr2Index])
                 arr2Index += 1
-                
             }
         }
 

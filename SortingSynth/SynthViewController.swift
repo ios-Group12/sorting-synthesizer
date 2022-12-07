@@ -58,7 +58,8 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 //play button pressed
                 if touch.view == self.playButton {//image View property
                     self.playButton.image = UIImage(named: "PLAYING")
-                    let array = Array(40...90)
+                    //let array = Array(40...90)
+let array = [38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81,83,84,86,88,89,91,93,95,96]
                     let shuffledArray = array.shuffled() //shuffles array into random order
                     
                     //background thread will run oscillator
@@ -105,20 +106,6 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
     
     func playSort(arrayToSort: [Int]){
         sound.noteOn()
-        switch sound.sortIndex{
-        case 0:
-            sound.insertionSort(arrayToSort)
-        case 1:
-            //mergeSort has recursive paths, requires return values
-            //return to anonymous variable
-            _=sound.mergeSort(arrayToSort)
-        case 2:
-            sound.bubbleSort(arrayToSort)
-        case 3:
-            sound.selectionSort(arrayToSort)
-        default:
-            sound.insertionSort(arrayToSort)
-        }
     }
 
     
