@@ -32,6 +32,7 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 6) [x] User can select musical keys
 7) [x] User can change sorting algorithm
 8) [x] User can start/stop the synthesizer
+
 **Optional Nice-to-have Stories**
 
 1) [x] User can save a recording
