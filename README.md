@@ -29,15 +29,15 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 3) [x] User can change volume
 4) [x] User can change oscillator
 5) [ ] User can +/- octaves
-6) [ ] User can select musical keys
+6) [x] User can select musical keys
 7) [x] User can change sorting algorithm
 8) [x] User can start/stop the synthesizer
 **Optional Nice-to-have Stories**
 
 1) [x] User can save a recording
 2) [x] User can add effects
-3) [ ] User can "share" a recording
-4) [ ] User can direct download the recording
+3) [x] User can "share" a recording
+4) [x] User can direct download the recording
 
 ### 2. Screen Archetypes
 
