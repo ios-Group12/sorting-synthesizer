@@ -58,14 +58,10 @@ class SynthViewController: UIViewController, MyDataSendingDelegateProtocol {
                 //play button pressed
                 if touch.view == self.playButton {//image View property
                     self.playButton.image = UIImage(named: "PLAYING")
-                    //let array = Array(40...90)
-let array = [38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81,83,84,86,88,89,91,93,95,96]
-                    let shuffledArray = array.shuffled() //shuffles array into random order
-                    
                     //background thread will run oscillator
                     let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
                     dispatchQueue.async{
-                        self.playSort(arrayToSort: shuffledArray) //send array to be sorted
+                        self.sound.noteOn()
                     }
                     //sound.osc.frequency = 440.0
                    // print(sound.osc.frequency)
@@ -98,17 +94,7 @@ let array = [38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,7
                 }
             }
         }
-    
-    func updatePlayButton(){
-        self.playButton.image = UIImage(named: "PLAYING")
-        self.view.addSubview(playButton)
-    }
-    
-    func playSort(arrayToSort: [Int]){
-        sound.noteOn()
-    }
 
-    
     func saveRecording(){
         let refreshAlert = UIAlertController(title: "Save Recording", message: "Save this recording?", preferredStyle: UIAlertController.Style.alert)
 

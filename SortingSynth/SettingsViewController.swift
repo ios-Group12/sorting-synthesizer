@@ -268,6 +268,20 @@ class SettingsViewController: UIViewController {
                 button.image = UIImage(named: "pushButtonOff")
             }
         }
+        //set minor push button. switch statement due to possible null
+        switch settingSound?.isMinor{
+        case true:
+            minorPushButton.image = UIImage(named: "bigPushButtonOn")
+            break
+        case false:
+            minorPushButton.image = UIImage(named: "bigPushButtonOff")
+            break
+        default:
+            minorPushButton.image = UIImage(named: "bigPushButtonOff")
+            break
+        }
+        
+       
     }
     
     
@@ -278,17 +292,7 @@ class SettingsViewController: UIViewController {
             if let touch = touches.first {
                 if touch.view == minorPushButton{
                     settingSound?.isMinor = !settingSound!.isMinor
-                    switch settingSound?.isMinor{
-                    case true:
-                        minorPushButton.image = UIImage(named: "bigPushButtonOn")
-                        break
-                    case false:
-                        minorPushButton.image = UIImage(named: "bigPushButtonOff")
-                        break
-                    default:
-                        minorPushButton.image = UIImage(named: "bigPushButtonOff")
-                        break
-                    }
+                    setKeys()
                 }
                 
                 //key signature button pressed

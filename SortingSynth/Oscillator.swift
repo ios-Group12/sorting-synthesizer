@@ -19,6 +19,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var osc = DynamicOscillator()
     @Published var waveTableIndex: Int = 0
     @Published var sortIndex: Int = 0
+    @Published var octaveIndex: Int = 1
     @Published var delay = Delay(DynamicOscillator())
     @Published var reverb = Reverb(DynamicOscillator())
     @Published var isDelay: Bool = false
@@ -29,6 +30,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var selectedKeyIndex1: Int = 0
     @Published var selectedKeyIndex2: Int = -1
     @Published var isMinor: Bool = false
+    
     //is the synth playing?
     @Published var isPlaying: Bool = true {
         didSet { isPlaying ? osc.start() : osc.stop() }
@@ -127,61 +129,122 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             insertionSort(sortArray)
         }
     }
+    /*
+     Minor scales: W, H, W, W, H, W, W.
+     Major scales: W, W, H, W, W, W, H.
+     W = Whole Step, +2 from previous note
+     H = Half Step, +1 from previous note
+    */
+    func GenerateScale(tonic: Int) -> [Int]{
+        var keyArray: [Int] = []
+        var lastNote = tonic
+        var j: Int
+        j = 4
+        if !isMinor {
+            //major scale generator
+            for _ in 1...j {
+                keyArray.append(lastNote)
+                for _ in 1...2{
+                    keyArray.append(lastNote+2)
+                    lastNote += 2
+                }
+                keyArray.append(lastNote+1)
+                lastNote += 1
+                for _ in 1...3{
+                    keyArray.append(lastNote+2)
+                    lastNote += 2
+                }
+                keyArray.append(lastNote+1)
+                lastNote += 1
+            }
+        } else {
+            //minor scale generator
+            for _ in 1...j {
+                keyArray.append(lastNote)
+                keyArray.append(lastNote+2) //w
+                lastNote += 2
+                keyArray.append(lastNote+1) //h
+                lastNote += 1
+                keyArray.append(lastNote+2) //w
+                lastNote += 2
+                keyArray.append(lastNote+2) //w
+                lastNote += 2
+                keyArray.append(lastNote+1) //h
+                lastNote += 1
+                keyArray.append(lastNote+2) //w
+                lastNote += 2
+                keyArray.append(lastNote+2) //w
+                lastNote += 2
+            }
+        }
+        return keyArray
+    }
     
     func SetKeyArray()->[Int]{
         let selectedArray: [Int]
         switch selectedKeyIndex1{
         case 0:
         //cmaj
-           selectedArray=[36,38,40,41,43,45,47,48,50,52,53,55,57,59,60,62,64,65,67,69,71,72,74,76,77,79,81,83,84]
+           selectedArray=GenerateScale(tonic: 36)
             break
         case 1:
         //gmaj
-            selectedArray = [31,33,35,36,38,40,42,43,45,47,48,50,52,54,55,57,59,60,62,64,66,67,69,71,72,74,76,78,79]
+            selectedArray = GenerateScale(tonic: 31)
+            //[31,33,35,36,38,40,42,43,45,47,48,50,52,54,55,57,59,60,62,64,66,67,69,71,72,74,76,78,79]
             break
         case 2:
         //dmaj
-            selectedArray = [38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81,83,85,86]
+            selectedArray = GenerateScale(tonic: 38)
+            //[38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81,83,85,86]
             break
         case 3:
         //amaj
-            selectedArray = [33,35,37,38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81]
+            selectedArray = GenerateScale(tonic: 33)
+            //[33,35,37,38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81]
             break
         case 4:
         //emaj
-            selectedArray = [40,42,44,45,47,49,51,52,54,56,57,59,61,63,64,66,68,69,71,73,75,76,78,80,81,83,85,87,88]
+            selectedArray = GenerateScale(tonic: 40)
+                
+            //[40,42,44,45,47,49,51,52,54,56,57,59,61,63,64,66,68,69,71,73,75,76,78,80,81,83,85,87,88]
             break
         case 5:
         //bmaj
-            selectedArray = [35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83]
+            selectedArray = GenerateScale(tonic: 35)
+           // [35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83]
             break
         case 6:
         //f# major
-            selectedArray = [30,32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78]
+            selectedArray = GenerateScale(tonic: 30)
+            //[30,32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78]
             break
         case 7:
         //Db
-            selectedArray = [37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85]
+            selectedArray = GenerateScale(tonic: 37)
+            //[37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85]
             break
         case 8:
         //Ab
-            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            selectedArray = GenerateScale(tonic: 32)
+            //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
             break
         case 9:
         //Eb
-            selectedArray = [39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87]
+            selectedArray = GenerateScale(tonic: 39)
+         //   [39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87]
             break
         case 10:
         //Bb
-            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            selectedArray = GenerateScale(tonic: 34) //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
             break
         case 11:
         //F
-            selectedArray = [34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            selectedArray = GenerateScale(tonic: 41) //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
             break
         default:
             //chromatic scale
-            selectedArray = Array(36...84)
+            let chromaticArray = Array(36...84)
+            selectedArray = chromaticArray.shuffled()
             break
         }
         return selectedArray
