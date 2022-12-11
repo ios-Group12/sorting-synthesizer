@@ -19,7 +19,9 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var osc = DynamicOscillator()
     @Published var waveTableIndex: Int = 0
     @Published var sortIndex: Int = 0
-    @Published var octaveIndex: Int = 1
+    @Published var isLow: Bool = true
+    @Published var isMed: Bool = true
+    @Published var isHigh: Bool = true
     @Published var delay = Delay(DynamicOscillator())
     @Published var reverb = Reverb(DynamicOscillator())
     @Published var isDelay: Bool = false
@@ -30,12 +32,12 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     @Published var selectedKeyIndex1: Int = 0
     @Published var selectedKeyIndex2: Int = -1
     @Published var isMinor: Bool = false
-    
     //is the synth playing?
     @Published var isPlaying: Bool = true {
         didSet { isPlaying ? osc.start() : osc.stop() }
     }
     
+    //oscillator has changed
     func cycleOscillator(){
         print("oscillator changed")
         if (waveTableIndex > 2){
@@ -47,6 +49,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         SetWaveTable()
     }
     
+    //insert wave table into oscillator based on user choice
     func SetWaveTable(){
         switch waveTableIndex{
         case 0:
@@ -62,6 +65,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         }
     }
     
+    //sort has changed
     func cycleSort(){
         if (sortIndex > 2){
             sortIndex = 0
@@ -108,11 +112,10 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         SetSort()
     }
     
+    //switch statement to kick off sorting alogrithm
     func SetSort(){
-        let untrimmedArray = SetKeyArray()
-       // let arraySlice = untrimmedArray[14...35]
-       // var sortArray = Array(arraySlice)
-        var sortArray = untrimmedArray
+        let trimmedArray = SetKeyArray()
+        var sortArray = trimmedArray
         sortArray = sortArray.shuffled()
         switch sortIndex{
         case 0:
@@ -129,6 +132,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             insertionSort(sortArray)
         }
     }
+    
     /*
      Minor scales: W, H, W, W, H, W, W.
      Major scales: W, W, H, W, W, W, H.
@@ -137,24 +141,25 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
     */
     func GenerateScale(tonic: Int) -> [Int]{
         var keyArray: [Int] = []
+        var trimmedArray: [Int]
         var lastNote = tonic
         var j: Int
         j = 4
         if !isMinor {
             //major scale generator
-            for _ in 1...j {
+            for _ in 1...j { //octaves
                 keyArray.append(lastNote)
-                for _ in 1...2{
+                for _ in 1...2{ //w w
                     keyArray.append(lastNote+2)
                     lastNote += 2
                 }
-                keyArray.append(lastNote+1)
+                keyArray.append(lastNote+1) //h
                 lastNote += 1
-                for _ in 1...3{
+                for _ in 1...3{ //w w w
                     keyArray.append(lastNote+2)
                     lastNote += 2
                 }
-                keyArray.append(lastNote+1)
+                keyArray.append(lastNote+1) //h
                 lastNote += 1
             }
         } else {
@@ -177,69 +182,79 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                 lastNote += 2
             }
         }
-        return keyArray
+        trimmedArray = octaveTrimmmer(keyArray: keyArray)
+        return trimmedArray
     }
     
+    func octaveTrimmmer(keyArray: [Int])->[Int]{
+        var trimmedArray: [Int] = []
+        if isLow {
+            trimmedArray.append(contentsOf: keyArray[...12])
+        }
+        if isMed{
+            trimmedArray.append(contentsOf: keyArray[13...23])
+        }
+        if isHigh{
+            trimmedArray.append(contentsOf: keyArray[24...])
+        }
+        if !isLow && !isMed && !isHigh {
+            trimmedArray = keyArray //nothing selected = all selected
+        }
+        return trimmedArray
+    }
+    
+    //switch statement to input root note of scale into scale generator
     func SetKeyArray()->[Int]{
         let selectedArray: [Int]
         switch selectedKeyIndex1{
         case 0:
-        //cmaj
-           selectedArray=GenerateScale(tonic: 36)
+        //c
+           selectedArray = GenerateScale(tonic: 36)
             break
         case 1:
-        //gmaj
+        //g
             selectedArray = GenerateScale(tonic: 31)
-            //[31,33,35,36,38,40,42,43,45,47,48,50,52,54,55,57,59,60,62,64,66,67,69,71,72,74,76,78,79]
+           
             break
         case 2:
-        //dmaj
+        //d
             selectedArray = GenerateScale(tonic: 38)
-            //[38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81,83,85,86]
             break
         case 3:
-        //amaj
+        //a
             selectedArray = GenerateScale(tonic: 33)
-            //[33,35,37,38,40,42,44,45,47,49,50,52,54,56,57,59,61,62,64,66,68,69,71,73,74,76,78,80,81]
             break
         case 4:
-        //emaj
+        //e
             selectedArray = GenerateScale(tonic: 40)
-                
-            //[40,42,44,45,47,49,51,52,54,56,57,59,61,63,64,66,68,69,71,73,75,76,78,80,81,83,85,87,88]
             break
         case 5:
-        //bmaj
+        //b
             selectedArray = GenerateScale(tonic: 35)
-           // [35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83]
             break
         case 6:
-        //f# major
+        //f#
             selectedArray = GenerateScale(tonic: 30)
-            //[30,32,34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78]
             break
         case 7:
         //Db
             selectedArray = GenerateScale(tonic: 37)
-            //[37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85]
             break
         case 8:
         //Ab
             selectedArray = GenerateScale(tonic: 32)
-            //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
             break
         case 9:
         //Eb
             selectedArray = GenerateScale(tonic: 39)
-         //   [39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82,83,85,87]
             break
         case 10:
         //Bb
-            selectedArray = GenerateScale(tonic: 34) //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            selectedArray = GenerateScale(tonic: 34)
             break
         case 11:
         //F
-            selectedArray = GenerateScale(tonic: 41) //[34,35,37,39,40,42,44,46,47,49,51,52,54,56,58,59,61,63,64,66,68,70,71,73,75,76,78,80,82]
+            selectedArray = GenerateScale(tonic: 41)
             break
         default:
             //chromatic scale
@@ -262,7 +277,14 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         self.osc.frequency = currentNote.midiNoteToFrequency()
         Thread.sleep(forTimeInterval: self.speed)
     }
-
+    
+    //this should work as an end state log function
+    func printSortData(){
+        print("Low/Med/High: \(isLow), \(isMed), \(isHigh)")
+        print("Selected key: \(selectedKeyIndex1)")
+        print("Delay/Reverb: \(isDelay), \(isReverb)")
+        print("Minor: \(isMinor)")
+    }
     
     //----------------------------------------------------------
     //Bubble Sort: O((n^2)/2)
@@ -288,12 +310,12 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             setFrequency(note: i)
         }
                 print("Sorted\(bubbleArray)")
-                //return arr
+                printSortData()
     }
     
     //----------------------------------------------------------
     //Insertion Sort: O(n^2)
-    //sorting in desc order because musically is sounds asc
+    //sorting in desc order because musically it sounds asc
     func insertionSort(_ array: [Int]){
        var insArray = array
         for x in 1..<insArray.count {
@@ -305,11 +327,13 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
                 y -= 1
             }
         }
+        
+        //grand finale
         for i in insArray{
             setFrequency(note: i)
         }
+        printSortData()
         print("Sorted\(insArray)")
-       // return arr
     }
     
     //----------------------------------------------------------
@@ -336,7 +360,7 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
         for i in selectionArray {
             setFrequency(note: i)
         }
-        //return selectionArray
+        printSortData()
         print("Sorted\(selectionArray)")
     }
     
@@ -372,9 +396,12 @@ class OscillatorConductor: ObservableObject, HasAudioEngine {
             sortedArray.append(arr2[arr2Index])
             arr2Index += 1
         }
+        
+        //grand finale
         for i in sortedArray{
             setFrequency(note: i)
         }
+        printSortData()
         return sortedArray
         
     }

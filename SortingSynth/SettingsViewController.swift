@@ -17,9 +17,12 @@ protocol MyDataSendingDelegateProtocol {
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet var keyButtonImages: [UIImageView]! //this contains all the push buttons, whose indices are saved into their respective tags
     
-    @IBOutlet var keyButtonImages: [UIImageView]!
     
+    @IBOutlet weak var octaveLowButton: UIImageView!
+    @IBOutlet weak var octaveMedButton: UIImageView!
+    @IBOutlet weak var octaveHighButton: UIImageView!
     @IBOutlet weak var minorPushButton: UIImageView!
     @IBOutlet weak var speedSelectorSwitch: UIImageView!
     @IBOutlet weak var reverbSelectorSwitch: UIImageView!
@@ -32,12 +35,11 @@ class SettingsViewController: UIViewController {
     var waveTableIndex:Int? //holds index of which oscillator to use
     @Published var oscDegrees: CGFloat = 0.0 //position of oscillator rotary dial
     @Published var sortDegrees: CGFloat  = 0.0 //position of sort rotary dial
-    @Published var speedDegrees: CGFloat = 0.0
+    @Published var speedDegrees: CGFloat = 0.0 //position of speed rotary dial
     
-    
-    //this is a hidden button layered over top of our rotary knob imageview
+    //this is a hidden button layered over top of our rotary dial imageview
     //this should be refactored to a different name
-    @IBAction func onTestPress(_ sender: Any) {
+    @IBAction func onOscillatorPress(_ sender: Any) {
         print("test press")
         settingSound?.cycleOscillator()
         oscDegrees += 90.0 //the value in degrees
@@ -46,7 +48,7 @@ class SettingsViewController: UIViewController {
         
     }
     
-    //this is a hidden button layered over top of our rotary knob imageview
+    //this is a hidden button layered over top of our rotary dial imageview
     //changes sorting algorithm
     @IBAction func onSortPress(_ sender: Any) {
         print("sort press")
@@ -56,7 +58,7 @@ class SettingsViewController: UIViewController {
         sortSelectorSwitch.transform = CGAffineTransform(rotationAngle: radians)
     }
     
-    //speed knob has 3 settings
+    //speed dial has 3 settings
     //setting 1: ~0.075 seconds between notes
     //setting 2: ~0.050 seconds between notes
     //setting 3: ~0.025 seconds between notes
@@ -141,7 +143,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setVolumeSlider()
-        setDialPositions() //set knob positions
+        setDialPositions() //set dial positions
         }
     
     func setVolumeSlider(){
@@ -152,7 +154,7 @@ class SettingsViewController: UIViewController {
         volumeSliderView.showsRouteButton = false
     }
     
-    //this sets the positions of the UI switches and knobs
+    //this sets the positions of the UI switches and dials
     //to be used in the viewdidload()
     func setDialPositions(){
         
@@ -180,7 +182,7 @@ class SettingsViewController: UIViewController {
             break
         }
         
-        //set oscillator knob
+        //set oscillator dial
         let radians: CGFloat
         switch settingSound?.waveTableIndex{
             case 0:
@@ -207,7 +209,7 @@ class SettingsViewController: UIViewController {
         //change picture position
         synthSelectorSwitch.transform = CGAffineTransform(rotationAngle: radians)
         
-        //set sort knob
+        //set sort dial
         let rad: CGFloat
         switch settingSound?.sortIndex{
             case 0:
@@ -234,7 +236,7 @@ class SettingsViewController: UIViewController {
         //change picture position
         sortSelectorSwitch.transform = CGAffineTransform(rotationAngle: rad)
         
-        //set speed knob
+        //set speed dial
         let speedRad: CGFloat
         switch settingSound?.speed{
             case 0.050:
@@ -256,11 +258,11 @@ class SettingsViewController: UIViewController {
         }
         //change picture position
         speedSelectorSwitch.transform = CGAffineTransform(rotationAngle: speedRad)
-        
-        setKeys()
+        setPushButtons()
     }
     
-    func setKeys(){
+    //sets push buttons
+    func setPushButtons(){
         for button in keyButtonImages{
             if (button.tag == settingSound?.selectedKeyIndex1 || button.tag == settingSound?.selectedKeyIndex2){
                 button.image = UIImage(named: "pushButtonOn")
@@ -268,20 +270,43 @@ class SettingsViewController: UIViewController {
                 button.image = UIImage(named: "pushButtonOff")
             }
         }
-        //set minor push button. switch statement due to possible null
+        //set minor push button.
+        //swift is complaining about possible null values
+        //using a switch statement due to possible null
         switch settingSound?.isMinor{
         case true:
             minorPushButton.image = UIImage(named: "bigPushButtonOn")
-            break
-        case false:
-            minorPushButton.image = UIImage(named: "bigPushButtonOff")
             break
         default:
             minorPushButton.image = UIImage(named: "bigPushButtonOff")
             break
         }
         
-       
+        //set octave push buttons
+        switch settingSound?.isLow {
+        case true:
+            octaveLowButton.image = UIImage(named: "pushButtonOn")
+            break
+        default:
+            octaveLowButton.image = UIImage(named: "pushButtonOff")
+        }
+        
+        switch settingSound?.isMed{
+        case true:
+            octaveMedButton.image = UIImage(named: "pushButtonOn")
+            break
+        default:
+            octaveMedButton.image = UIImage(named: "pushButtonOff")
+        }
+    
+        switch settingSound?.isHigh{
+        case true:
+            octaveHighButton.image = UIImage(named: "pushButtonOn")
+            break
+        default:
+            octaveHighButton.image = UIImage(named: "pushButtonOff")
+        }
+        
     }
     
     
@@ -290,26 +315,41 @@ class SettingsViewController: UIViewController {
             super.touchesEnded(touches, with: event)
             
             if let touch = touches.first {
+                //minor button was pushed, activates minor (aeolian) mode
                 if touch.view == minorPushButton{
                     settingSound?.isMinor = !settingSound!.isMinor
-                    setKeys()
+                }
+                //octave buttons
+                if touch.view == octaveLowButton{
+                    settingSound?.isLow = !settingSound!.isLow
                 }
                 
-                //key signature button pressed
+                if touch.view == octaveMedButton{
+                    settingSound?.isMed = !settingSound!.isMed
+                }
+                
+                if touch.view == octaveHighButton{
+                    settingSound?.isHigh = !settingSound!.isHigh
+                }
+                setPushButtons()
+                //key signature button pressed. button tags hold their index value
+                //if the button tag matches the selected index,
                 for button in self.keyButtonImages{
                     if touch.view == button{
+                        //if the button's tag matches the index, turn it off
                         if (button.tag == settingSound?.selectedKeyIndex1 || button.tag == settingSound?.selectedKeyIndex2){
-                            button.image = UIImage(named: "pushButtonOff")
+                            //deselect key and set to chromatic
                             if (button.tag == settingSound?.selectedKeyIndex1){
                                 settingSound?.selectedKeyIndex1 = -1
                             } else {
                                 settingSound?.selectedKeyIndex2 = -1
                             }
                         } else {
+                            //the button needs to be on, set index to button tag
                             button.image = UIImage(named: "pushButtonOn")
                             settingSound?.selectedKeyIndex1 = button.tag
                         }
-                        setKeys()
+                        setPushButtons() //call set keys to turn off unselected buttons
                     }
                 }
             }
