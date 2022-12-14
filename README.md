@@ -10,6 +10,8 @@
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
+[![sorting synth youtube](http://img.youtube.com/vi/EU6xeocmznA/0.jpg)](http://www.youtube.com/watch?v=EU6xeocmznA "Sorting Synth Demonstration")
+
 ### App Evaluation
 - **Category:** Music / Education
 - **Mobile:** This app will be primarily developed for mobile
@@ -24,22 +26,23 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 **Required Must-have Stories**
 
-1) User can register
-2) User can log in
-3) User can change volume
-4) User can change oscillator
-5) User can +/- octaves
-6) User can select musical keys
-7) User can change sorting algorithm
-8) User can start/stop the synthesizer
-
+1) [x] User can register
+2) [x] User can log in
+3) [x] User can change volume
+4) [x] User can change oscillator
+5) [x] User can +/- octaves
+6) [x] User can select musical keys
+7) [x] User can change sorting algorithm
+8) [x] User can start/stop the synthesizer
 
 **Optional Nice-to-have Stories**
 
-1) User can record
-2) User can add effects
-3) User can "share" a recording
-4) User can direct download the recording
+1) [x] User can save a recording
+2) [x] User can add effects
+3) [x] User can "share" a recording
+4) [x] User can direct download the recording
+5) [x] User can delete a recording
+6) [x] User can rename a recording
 
 ### 2. Screen Archetypes
 
@@ -176,4 +179,10 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
         task!.resume()
         ```
 
+## Video Walkthrough
 
+Here's a walkthrough of implemented user stories:
+
+https://youtu.be/EU6xeocmznA
+
+Walkthrough description: The user logs in (or registers then logs in), then starts the synthesizer. The user can record audio and save that recording to Parse. The user can view, play, and delete their Parse recordings. The user can select 4 different waveforms to shape their Oscillator: Sine, Triangle, Sawtooth, Square. The user can select 4 different sorting algorithms to generate movement in the sound: Insertion, Merge, Bubble, and Selection sort. The user can toggle on/off two effects: Delay and Reverb. The user can change volume within the app (this feature only works on real devices). The user can select 12 different key signatures.
