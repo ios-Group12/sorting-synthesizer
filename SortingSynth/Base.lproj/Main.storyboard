@@ -22,10 +22,10 @@
                                 <rect key="frame" x="66" y="75" width="720" height="243"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGW-Qs-suy">
-                                        <rect key="frame" x="0.0" y="96.666666666666657" width="397" height="50"/>
+                                        <rect key="frame" x="0.0" y="121.66666666666666" width="397" height="0.0"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logodraft" translatesAutoresizingMaskIntoConstraints="NO" id="H9r-16-gZx">
-                                                <rect key="frame" x="20" y="-805.33333333333326" width="357" height="1660.3333333333335"/>
+                                                <rect key="frame" x="20" y="-830.33333333333326" width="357" height="1660.3333333333333"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1660.3333333333333" id="LgB-HK-VIN"/>
                                                 </constraints>
@@ -39,7 +39,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="UyQ-LI-IYe">
-                                        <rect key="frame" x="423" y="29.333333333333314" width="297" height="184.66666666666669"/>
+                                        <rect key="frame" x="423" y="29.333333333333329" width="297" height="184.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-uT-8ff">
                                                 <rect key="frame" x="0.0" y="0.0" width="297" height="60.333333333333336"/>
@@ -145,7 +145,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yRY-8V-tdl">
-                                <rect key="frame" x="-9" y="352" width="870" height="41"/>
+                                <rect key="frame" x="-9" y="352" width="869" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Recordings" width="149" id="Qtj-iG-GA0">
@@ -348,7 +348,7 @@
                                 </connections>
                             </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-a4-WgL">
-                                <rect key="frame" x="-9" y="352" width="869" height="41"/>
+                                <rect key="frame" x="-10" y="352" width="870" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="SynthButton" width="144.66666666666669" id="tnr-B6-z6J">
@@ -433,8 +433,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="woodtexture" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-Z4-TAL">
-                                <rect key="frame" x="-80" y="-41" width="1012" height="500"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="woodtexture" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-Z4-TAL">
+                                <rect key="frame" x="-187" y="-115" width="1226" height="622"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="orz-I8-dnc">
                                 <rect key="frame" x="512" y="53" width="109" height="285"/>
@@ -860,7 +861,7 @@
                                 </subviews>
                             </view>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wa-pu-3j4">
-                                <rect key="frame" x="-6" y="0.0" width="864" height="44"/>
+                                <rect key="frame" x="-7" y="0.0" width="865" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Settings" id="yve-e1-NvU">
@@ -958,12 +959,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Qc-9z-ZYO"/>
-                        <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="yOg-Z4-TAL" secondAttribute="bottom" constant="-100" id="3Tj-8i-Fpj"/>
-                            <constraint firstItem="yOg-Z4-TAL" firstAttribute="top" secondItem="3FD-Uf-jow" secondAttribute="topMargin" constant="-100" id="4jw-na-0bK"/>
-                            <constraint firstItem="yOg-Z4-TAL" firstAttribute="centerX" secondItem="3FD-Uf-jow" secondAttribute="centerX" id="oL4-oJ-xzs"/>
-                            <constraint firstItem="yOg-Z4-TAL" firstAttribute="leading" secondItem="3FD-Uf-jow" secondAttribute="leadingMargin" constant="-100" id="zll-gN-B8L"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="delaySelectorSwitch" destination="kES-ip-6yO" id="o1k-ps-iYv"/>
