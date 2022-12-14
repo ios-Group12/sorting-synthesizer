@@ -10,7 +10,7 @@
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
-[![sorting synth youtube](http://img.youtube.com/vi/EU6xeocmznA/0.jpg)](http://www.youtube.com/watch?v=EU6xeocmznA "Sorting Synth Demonstration")
+[![sorting synth youtube](http://img.youtube.com/vi/EU6xeocmznA/0.jpg)](http://www.youtube.com/watch?v=iEJo-QjtEAg&t "Sorting Synth Demonstration")
 
 ### App Evaluation
 - **Category:** Music / Education
@@ -183,6 +183,6 @@ An iOS synthesizer that uses a variety of sorting algorithms to generate sound p
 
 Here's a walkthrough of implemented user stories:
 
-https://youtu.be/EU6xeocmznA
+https://www.youtube.com/watch?v=iEJo-QjtEAg&t
 
 Walkthrough description: The user logs in (or registers then logs in), then starts the synthesizer. The user can record audio and save that recording to Parse. The user can view, play, and delete their Parse recordings. The user can select 4 different waveforms to shape their Oscillator: Sine, Triangle, Sawtooth, Square. The user can select 4 different sorting algorithms to generate movement in the sound: Insertion, Merge, Bubble, and Selection sort. The user can toggle on/off two effects: Delay and Reverb. The user can change volume within the app (this feature only works on real devices). The user can select 12 different key signatures.
