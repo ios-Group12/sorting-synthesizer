@@ -1,4 +1,6 @@
 # Group 12: SortingSynth
+<img width="640" alt="logodraft Large" src="https://user-images.githubusercontent.com/97559945/207700725-0aac87fd-7d87-4abe-8854-d029f9e1e795.png">
+
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -7,6 +9,7 @@
 2. [Schema](#Schema)
 
 ## Overview
+
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
