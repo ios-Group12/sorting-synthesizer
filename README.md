@@ -10,9 +10,13 @@
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
+Video Walkthrough:
+
 [![sorting synth youtube](http://img.youtube.com/vi/EU6xeocmznA/0.jpg)](http://www.youtube.com/watch?v=iEJo-QjtEAg&t "Sorting Synth Demonstration")
 
 ### App Evaluation
+![finalicon-01 Small](https://user-images.githubusercontent.com/97559945/207694712-245028ae-a8eb-46c5-bcfc-7f5ca8b0aeff.jpeg)
+
 - **Category:** Music / Education
 - **Mobile:** This app will be primarily developed for mobile
 - **Story:** Takes a random array of integers and sorts them. For each sort, it generates a synthesized tone. For each synthsized tone, it is matched to a musical key signature, including 12-tone chromatic scale. The user can adjust different settings to change the sound.
