@@ -10,6 +10,8 @@
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
+https://youtu.be/EU6xeocmznA
+
 ### App Evaluation
 - **Category:** Music / Education
 - **Mobile:** This app will be primarily developed for mobile
