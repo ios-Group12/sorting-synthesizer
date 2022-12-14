@@ -10,8 +10,9 @@
 ### Description
 An iOS synthesizer that uses a variety of sorting algorithms to generate sound patterns.
 
-https://youtu.be/EU6xeocmznA
+[![sorting synth youtube](http://img.youtube.com/vi/EU6xeocmznA/0.jpg)](http://www.youtube.com/watch?v=EU6xeocmznA "Sorting Synth Demonstration")
 
+https://youtu.be/EU6xeocmznA
 ### App Evaluation
 - **Category:** Music / Education
 - **Mobile:** This app will be primarily developed for mobile
